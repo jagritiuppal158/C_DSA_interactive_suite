@@ -124,8 +124,9 @@ void destroy_pq(priority_queue* pq)
 
 void display_heap(priority_queue* pq)
 {
-    printf("Heap: ");
+    printf("\nHeap: ");
     print_array(pq->heap, pq->size);
+    printf("\n");
 }
 
 void priority_queue_demo(void)
@@ -157,7 +158,7 @@ void priority_queue_demo(void)
             int pq_choice;
             int pq_choice_status = safe_input_int(&pq_choice,
                                                   "\nEnter 1 to insert, 2 to remove and extract "
-                                                  "top, 3 to look at top, -1 to exit demo: ",
+                                                  "top, 3 to peek at top, -1 to exit demo: ",
                                                   1, 3);
 
             if (pq_choice_status == INPUT_EXIT_SIGNAL)
@@ -205,7 +206,7 @@ void priority_queue_demo(void)
                     continue;
                 }
 
-                printf("\n%s element extracted: %d", return_heap_type((int)pq->heapType),
+                printf("\n%s element extracted: %d\n", return_heap_type((int)pq->heapType),
                        extracted_element);
                 display_heap(pq);
             }
@@ -220,7 +221,7 @@ void priority_queue_demo(void)
                     continue;
                 }
 
-                printf("\n%s element in heap: %d", return_heap_type((int)pq->heapType),
+                printf("\n%s element in heap: %d\n", return_heap_type((int)pq->heapType),
                        peek_element);
             }
         }
