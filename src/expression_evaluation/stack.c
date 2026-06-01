@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "stack.h"
 #include "data_structures.h"
 #include <stdlib.h>
