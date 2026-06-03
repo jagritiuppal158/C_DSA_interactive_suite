@@ -67,4 +67,10 @@ void floyd_warshall(int** graph, int V, int** dist, int** next);
 void print_floyd_warshall_solution(int** dist, int** next, int V);
 void floyd_warshall_demo(void);
 
+// ------------------For Greedy Best-First Search-----------------------
+
+int greedy_best_first_search_solve(weightedGraph* graph, int start, int dest, int h[], int parent[], int traversal_order[], int* traversal_len);
+void greedy_best_first_search(weightedGraph* graph, int start, int dest, int h[]);
+void greedy_best_first_search_demo(void);
+
 #endif
