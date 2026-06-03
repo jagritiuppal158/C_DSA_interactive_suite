@@ -42,6 +42,7 @@ fmt:
 
 clean:
 	$(RM) $(TARGET)$(EXE) test_circ_queue$(EXE) test_bst$(EXE) test_search$(EXE) test_hash_func$(EXE) test_sll$(EXE) test_dll$(EXE) test_array$(EXE) test_stack$(EXE) test_tbt$(EXE) test_priority_queue$(EXE) test_scll$(EXE) test_simple_queue$(EXE) test_deque$(EXE) test_astar$(EXE)
+	$(RM) $(TARGET)$(EXE) test_circ_queue$(EXE) test_bst$(EXE) test_search$(EXE) test_hash_func$(EXE) test_sll$(EXE) test_dll$(EXE) test_array$(EXE) test_stack$(EXE) test_tbt$(EXE) test_priority_queue$(EXE) test_scll$(EXE) test_simple_queue$(EXE) test_deque$(EXE) test_avl$(EXE)
 
 valgrind:
 	for t in $(TEST_BINS); do \
@@ -131,6 +132,10 @@ ASTAR_TEST_SRC = \
 	src/graph_traversals/dijkstra.c \
 	src/utils/safe_input_int.c \
 	tests/test_astar.c
+AVL_TEST_SRC = \
+	src/data_structures/avl.c \
+	src/utils/safe_input_int.c \
+	tests/test_avl.c
 
 test_tbt:
 	$(CC) $(CFLAGS) $(TBT_TEST_SRC) -o test_tbt$(EXE)
@@ -190,7 +195,14 @@ test_astar:
 
 
 TEST_BINS=test_circ_queue test_bst test_search test_hash_func test_sll test_dll test_array test_stack test_tbt test_priority_queue test_scll test_simple_queue test_deque test_astar
+test_avl:
+	$(CC) $(CFLAGS) $(AVL_TEST_SRC) -o test_avl$(EXE)
+	./test_avl$(EXE)
+
+
+TEST_BINS=test_circ_queue test_bst test_search test_hash_func test_sll test_dll test_array test_stack test_tbt test_priority_queue test_scll test_simple_queue test_deque test_avl
 test: $(TEST_BINS)
 
 .PHONY: $(TARGET) $(TEST_BINS)
+
 

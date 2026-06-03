@@ -28,9 +28,13 @@ void test_deque_basic_ops()
     assert(deque_get_front(&dq) == 5);
     assert(deque_get_rear(&dq) == 20);
 
-    assert(deque_delete_front(&dq) == 5);
-    assert(deque_delete_rear(&dq) == 20);
-    assert(deque_delete_front(&dq) == 10);
+    int val;
+    assert(deque_delete_front(&dq, &val) == 1);
+    assert(val == 5);
+    assert(deque_delete_rear(&dq, &val) == 1);
+    assert(val == 20);
+    assert(deque_delete_front(&dq, &val) == 1);
+    assert(val == 10);
 
     assert(deque_is_empty(&dq) == true);
     destroy_deque(&dq);
@@ -43,8 +47,9 @@ void test_deque_underflow()
     deque dq;
     init_deque(5, &dq);
 
-    assert(deque_delete_front(&dq) == -1);
-    assert(deque_delete_rear(&dq) == -1);
+    int val;
+    assert(deque_delete_front(&dq, &val) == -1);
+    assert(deque_delete_rear(&dq, &val) == -1);
     assert(deque_get_front(&dq) == -1);
     assert(deque_get_rear(&dq) == -1);
 
@@ -74,21 +79,27 @@ void test_deque_wraparound()
     deque dq;
     init_deque(3, &dq);
 
+    int val;
     // Front: -1, Rear: -1
-    assert(deque_insert_rear(&dq, 1) == 1); // F: 0, R: 0 [1]
-    assert(deque_insert_rear(&dq, 2) == 1); // F: 0, R: 1 [1, 2]
-    assert(deque_delete_front(&dq) == 1);   // F: 1, R: 1 [2]
+    assert(deque_insert_rear(&dq, 1) == 1);     // F: 0, R: 0 [1]
+    assert(deque_insert_rear(&dq, 2) == 1);     // F: 0, R: 1 [1, 2]
+    assert(deque_delete_front(&dq, &val) == 1); // F: 1, R: 1 [2]
+    assert(val == 1);
 
     assert(deque_insert_front(&dq, 3) == 1); // F: 0, R: 1 [3, 2]
-    assert(deque_insert_front(&dq, 4) == 1); // F: 2, R: 1 [3, 2] (under the hood F wraps to N-1 which is 2) [4 at idx 2, 3 at idx 0, 2 at idx 1]
+    assert(deque_insert_front(&dq, 4) == 1); // F: 2, R: 1 [3, 2] (under the hood F wraps to N-1
+                                             // which is 2) [4 at idx 2, 3 at idx 0, 2 at idx 1]
     assert(deque_is_full(&dq) == true);
 
     assert(deque_get_front(&dq) == 4);
     assert(deque_get_rear(&dq) == 2);
 
-    assert(deque_delete_rear(&dq) == 2);   // F: 2, R: 0
-    assert(deque_delete_front(&dq) == 4);  // F: 0, R: 0
-    assert(deque_delete_front(&dq) == 3);  // F: -1, R: -1
+    assert(deque_delete_rear(&dq, &val) == 1); // F: 2, R: 0
+    assert(val == 2);
+    assert(deque_delete_front(&dq, &val) == 1); // F: 0, R: 0
+    assert(val == 4);
+    assert(deque_delete_front(&dq, &val) == 1); // F: -1, R: -1
+    assert(val == 3);
 
     assert(deque_is_empty(&dq) == true);
 

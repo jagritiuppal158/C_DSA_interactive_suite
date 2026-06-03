@@ -83,12 +83,12 @@ int deque_insert_rear(deque* dq, int value)
     return 1;
 }
 
-int deque_delete_front(deque* dq)
+int deque_delete_front(deque* dq, int* val)
 {
     if (deque_is_empty(dq))
         return -1;
 
-    int val = dq->arr[dq->front];
+    *val = dq->arr[dq->front];
 
     if (dq->front == dq->rear) // only one element
     {
@@ -104,15 +104,15 @@ int deque_delete_front(deque* dq)
         dq->front = dq->front + 1;
     }
 
-    return val;
+    return 1;
 }
 
-int deque_delete_rear(deque* dq)
+int deque_delete_rear(deque* dq, int* val)
 {
     if (deque_is_empty(dq))
         return -1;
 
-    int val = dq->arr[dq->rear];
+    *val = dq->arr[dq->rear];
 
     if (dq->front == dq->rear) // only one element
     {
@@ -128,7 +128,7 @@ int deque_delete_rear(deque* dq)
         dq->rear = dq->rear - 1;
     }
 
-    return val;
+    return 1;
 }
 
 int deque_get_front(const deque* dq)
@@ -206,8 +206,9 @@ void deque_demo(void)
 
             if (choice_status == INPUT_EXIT_SIGNAL)
             {
+                printf("\nExiting deque demo\n");
                 destroy_deque(&dq);
-                break;
+                return;
             }
             if (choice_status == 0)
             {
@@ -217,9 +218,11 @@ void deque_demo(void)
             if (choice == 1)
             {
                 int val;
-                int val_status = safe_input_int(&val, "\nEnter value to insert at front (1 to 100), '-1' to exit: ", 1, 100);
+                int val_status = safe_input_int(
+                    &val, "\nEnter value to insert at front (1 to 100), '-1' to exit: ", 1, 100);
                 if (val_status == INPUT_EXIT_SIGNAL)
                 {
+                    printf("\nExiting deque demo\n");
                     destroy_deque(&dq);
                     return;
                 }
@@ -235,9 +238,11 @@ void deque_demo(void)
             else if (choice == 2)
             {
                 int val;
-                int val_status = safe_input_int(&val, "\nEnter value to insert at rear (1 to 100), '-1' to exit: ", 1, 100);
+                int val_status = safe_input_int(
+                    &val, "\nEnter value to insert at rear (1 to 100), '-1' to exit: ", 1, 100);
                 if (val_status == INPUT_EXIT_SIGNAL)
                 {
+                    printf("\nExiting deque demo\n");
                     destroy_deque(&dq);
                     return;
                 }
@@ -252,27 +257,29 @@ void deque_demo(void)
             }
             else if (choice == 3)
             {
-                int removed = deque_delete_front(&dq);
-                if (removed == -1)
+                int removed_val;
+                int status_code = deque_delete_front(&dq, &removed_val);
+                if (status_code == -1)
                 {
                     printf("\nDeque is empty (underflow)\n");
                 }
                 else
                 {
-                    printf("\nDeleted element from front: %d\n", removed);
+                    printf("\nDeleted element from front: %d\n", removed_val);
                 }
                 display_deque(&dq);
             }
             else if (choice == 4)
             {
-                int removed = deque_delete_rear(&dq);
-                if (removed == -1)
+                int removed_val;
+                int status_code = deque_delete_rear(&dq, &removed_val);
+                if (status_code == -1)
                 {
                     printf("\nDeque is empty (underflow)\n");
                 }
                 else
                 {
-                    printf("\nDeleted element from rear: %d\n", removed);
+                    printf("\nDeleted element from rear: %d\n", removed_val);
                 }
                 display_deque(&dq);
             }
