@@ -171,6 +171,7 @@ SHELL_SORT_TEST_SRC = \
 	src/sorting_algorithms_n2/shell_sort.c \
 	src/data_structures/array.c \
 	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
 	tests/test_shell_sort.c
 
 test_tbt:

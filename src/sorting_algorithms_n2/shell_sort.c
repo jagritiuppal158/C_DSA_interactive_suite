@@ -1,7 +1,9 @@
 #include "data_structures.h"
 #include "safe_input.h"
+#include "history_logger.h"
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
 
 void shell_sort(int arr[], int length_of_array);
 
@@ -52,6 +54,9 @@ void shell_sort_demo(void)
     }
 }
 
+// note: the time measured by clock() function includes the time for shell sort computation and
+// printing the array state after each iteration. the CPU time must not be treated as a measure of
+// efficiency of the algorithm and is for demonstration only.
 /* Performs shell sort using shell's original N/2, N/4... gap sequence */
 void shell_sort(int arr[], int length_of_array)
 {
@@ -79,6 +84,7 @@ void shell_sort(int arr[], int length_of_array)
         printf("after gap of %d - ", gap);
         print_array(arr, length_of_array);
         printf("\n");
+        sleep(1);
     }
 
     end_t = clock();
@@ -87,4 +93,5 @@ void shell_sort(int arr[], int length_of_array)
     printf("\nfinal array sorted by shell sort - ");
     print_array(arr, length_of_array);
     printf("\nTotal CPU time taken:- %f seconds", total_t);
+    add_to_history("Shell Sort", length_of_array, total_t);
 }
