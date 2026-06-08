@@ -41,7 +41,7 @@ void lrc_demo(void)
         fgets(data[i], sizeof(data[i]), stdin);
         
         // Remove trailing newline
-        size_t len = strlen(data[i]);
+        int len = strlen(data[i]);
         if (len > 0 && data[i][len-1] == '\n') {
             data[i][len-1] = '\0';
             len--;

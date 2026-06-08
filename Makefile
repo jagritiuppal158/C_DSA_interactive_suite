@@ -67,13 +67,13 @@ fmt:
 
 clean:
 ifeq ($(OS),Windows_NT)
+	$(RM) $(TARGET)$(EXE)
 	$(RM_DIR) $(OBJ_DIR)
 	$(RM_DIR) $(TEST_DIR)
-	$(RM) $(TARGET)$(EXE)
 else
+	$(RM) $(TARGET)$(EXE)
 	$(RM_DIR) $(OBJ_DIR)
 	$(RM_DIR) $(TEST_DIR)
-	$(RM) $(TARGET)$(EXE)
 endif
 
 valgrind:
