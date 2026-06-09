@@ -16,9 +16,10 @@ void error_correction_algorithms_demo(void)
                                         "\nEnter 3 for CRC"
                                         "\nEnter 4 for LRC"
                                         "\nEnter 5 for VRC"
-                                        "\nEnter 6 for Hamming Code"
+                                        "\nEnter 6 for Hamming Code (sender)"
+                                        "\nEnter 7 for Hamming Code (receiver)"
                                         "\nEnter -1 to exit: ",
-                                        1, 6);
+                                        1, 7);
 
         if (ECA_status == INPUT_EXIT_SIGNAL)
         {
@@ -56,6 +57,10 @@ void error_correction_algorithms_demo(void)
 
             case 6:
                 hamming_demo();
+                break;
+
+            case 7:
+                hamming_receiver_demo();
                 break;
 
             default:
