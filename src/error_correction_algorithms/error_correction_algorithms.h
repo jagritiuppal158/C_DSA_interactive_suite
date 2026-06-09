@@ -32,6 +32,7 @@ void parity_bit_demo(void);
 
 /* VRC */
 void vrc_demo(void);
+void hamming_demo(void);
 
 /* Shared checksum helpers (implemented in checksum.c) */
 void checksum_print_binary(int value, int bits);

@@ -1,5 +1,5 @@
 #include "safe_input.h"
-#include <error_correction_algorithms.h>
+#include "error_correction_algorithms.h"
 #include <stdio.h>
 
 /* New functions come here */
@@ -20,12 +20,13 @@ void error_correction_algorithms_demo(void)
             "\nEnter 5 for LRC"
             "\nEnter 6 for Parity Bit"
             "\nEnter 7 for VRC"
+            "\nEnter 8 for Hamming Code"
             "\nEnter -1 to exit: ",
-            1, 7);
+            1, 8);
 
         if (ECA_status == INPUT_EXIT_SIGNAL)
         {
-            printf("Exiting Error Correction Algorithm Demo....\n");
+            printf("Exiting Error Correction Algorithm Demo...\n");
             return;
         }
 
@@ -34,8 +35,6 @@ void error_correction_algorithms_demo(void)
 
         switch (ECA_choice)
         {
-            /* Newly implemented functions will be called here */
-
             case 1:
                 checksum_demo();
                 break;
@@ -62,6 +61,10 @@ void error_correction_algorithms_demo(void)
 
             case 7:
                 vrc_demo();
+                break;
+
+            case 8:
+                hamming_demo();
                 break;
 
             default:
