@@ -267,9 +267,12 @@ $(TEST_DIR)/test_bplus_tree$(EXE): $(OBJ_DIR)/src/trees/bplus_tree.o $(OBJ_DIR)/
 	$(CC) $(CFLAGS) $^ -o $@
 
 test_parity_bit: $(TEST_DIR)/test_parity_bit$(EXE)
-	$(TEST_DIR)/test_parity_bit$(EXE)
 
-$(TEST_DIR)/test_parity_bit$(EXE): $(OBJ_DIR)/src/error_correction_algorithms/parity_bit.o $(OBJ_DIR)/src/utils/safe_input_int.o tests/test_parity_bit.c
+$(TEST_DIR)/test_parity_bit$(EXE): \
+	$(OBJ_DIR)/src/error_correction_algorithms/parity_bit.o \
+	$(OBJ_DIR)/src/error_correction_algorithms/checksum.o \
+	$(OBJ_DIR)/src/utils/safe_input_int.o \
+	tests/test_parity_bit.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@
 
