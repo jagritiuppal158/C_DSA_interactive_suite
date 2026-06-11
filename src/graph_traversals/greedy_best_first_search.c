@@ -22,7 +22,7 @@ int greedy_best_first_search_solve(weightedGraph* graph, int start, int dest, in
     // "distance" field, which here carries the heuristic h. Duplicate entries
     // are handled lazily via the visited[] check on pop.
     PQ_graph pq;
-    pq.size = 0;
+    init_pq_graph(&pq, 10);
 
     for (int i = 0; i < size; i++)
     {
@@ -69,7 +69,7 @@ int greedy_best_first_search_solve(weightedGraph* graph, int start, int dest, in
         }
     }
 
-    free(visited);
+    free_pq_graph(&pq);
     return found;
 }
 
