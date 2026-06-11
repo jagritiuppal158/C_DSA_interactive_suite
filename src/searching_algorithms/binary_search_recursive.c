@@ -4,34 +4,7 @@
 #include <stdio.h>
 #include <time.h>
 
-int binary_search_recursive(int arr[], int target, int length_of_array);
-
-// recursive helper: searches arr[low..high] for target and returns its index, or -1 if absent.
-// it is local to this file (static) and carries the shrinking search window through low and high.
-static int binary_search_recursive_helper(int arr[], int target, int low, int high)
-{
-    if (low > high) // base case: empty window, target is not present
-    {
-        return -1;
-    }
-
-    int mid = low + (high - low) / 2;
-
-    if (arr[mid] == target)
-    {
-        return mid;
-    }
-    else if (arr[mid] < target)
-    {
-        // target is greater, search the right half
-        return binary_search_recursive_helper(arr, target, mid + 1, high);
-    }
-    else
-    {
-        // target is smaller, search the left half
-        return binary_search_recursive_helper(arr, target, low, mid - 1);
-    }
-}
+int binary_search_recursive(int arr[], int target, int low, int high);
 
 void binary_search_recursive_demo(void)
 {
@@ -110,7 +83,7 @@ void binary_search_recursive_demo(void)
         selection_sort(arr, length_of_array);
 
         start_t = clock();
-        int res = binary_search_recursive(arr, target, length_of_array);
+        int res = binary_search_recursive(arr, target, 0, length_of_array - 1);
         end_t = clock();
         total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
         printf("\nelement found at index %d.", res);
@@ -124,8 +97,29 @@ void binary_search_recursive_demo(void)
     }
 }
 
-int binary_search_recursive(int arr[], int target, int length_of_array)
+// recursively searches arr[low..high] for target, returning its index or -1 if absent.
+// low and high carry the shrinking search window, so the demo starts it with 0 and length - 1.
+int binary_search_recursive(int arr[], int target, int low, int high)
 {
-    // public entry point: kicks off the recursion over the full array [0 .. length-1]
-    return binary_search_recursive_helper(arr, target, 0, length_of_array - 1);
+    if (low > high) // base case: empty window, target is not present
+    {
+        return -1;
+    }
+
+    int mid = low + (high - low) / 2;
+
+    if (arr[mid] == target)
+    {
+        return mid;
+    }
+    else if (arr[mid] < target)
+    {
+        // target is greater, search the right half
+        return binary_search_recursive(arr, target, mid + 1, high);
+    }
+    else
+    {
+        // target is smaller, search the left half
+        return binary_search_recursive(arr, target, low, mid - 1);
+    }
 }

@@ -7,6 +7,6 @@ void binary_search_recursive_demo(void);
 void searching_algorithms_demo(void);
 int linear_search(int arr[], int target, int length_of_array);
 int binary_search(int arr[], int target, int length_of_array);
-int binary_search_recursive(int arr[], int target, int length_of_array);
+int binary_search_recursive(int arr[], int target, int low, int high);
 
 #endif
