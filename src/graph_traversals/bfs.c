@@ -2,6 +2,7 @@
 #include "graph_io.h"
 #include "graph_traversals.h"
 #include "history_logger.h"
+#include "returnMallocVal.h"
 #include "safe_input.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,13 +40,17 @@ void bfs(Graph* graph, int start)
     start_t = clock();
 
     visited[start] = 1;
-    enqueue(&nodes, start);
+    enqueue(&nodes, returnMallocInt(start));
 
     while (1)
     {
-        int curr = dequeue(&nodes);
-        if (curr == -1)
+        int* curr_ptr = dequeue(&nodes);
+
+        if (curr_ptr == NULL)
             break;
+
+        int curr = *curr_ptr;
+        free(curr_ptr);
 
         printf("%d->", curr);
 
@@ -54,11 +59,13 @@ void bfs(Graph* graph, int start)
         while (temp)
         {
             int v = temp->data;
+
             if (!visited[v])
             {
                 visited[v] = 1;
-                enqueue(&nodes, v);
+                enqueue(&nodes, returnMallocInt(v));
             }
+
             temp = temp->next;
         }
     }
@@ -68,7 +75,9 @@ void bfs(Graph* graph, int start)
 
     printf("end\n");
     printf("\ntotal CPU time taken for BFS traversal:- %f seconds\n", total_t);
+
     add_to_history("BFS", size, total_t);
+
     destroy_circ_queue(&nodes);
 }
 
@@ -354,6 +363,7 @@ void topological_sort_kahn(Graph* graph)
     for (int u = 0; u < size; u++)
     {
         Node* temp = graph->array[u];
+
         while (temp)
         {
             in_degree[temp->data]++;
@@ -373,7 +383,7 @@ void topological_sort_kahn(Graph* graph)
     for (int i = 0; i < size; i++)
     {
         if (in_degree[i] == 0)
-            enqueue(&q, i);
+            enqueue(&q, returnMallocInt(i));
     }
 
     /* Step 3: Process the queue (Kahn's BFS) */
@@ -383,20 +393,28 @@ void topological_sort_kahn(Graph* graph)
 
     while (1)
     {
-        int u = dequeue(&q);
-        if (u == -1)
+        int* u_ptr = dequeue(&q);
+
+        if (u_ptr == NULL)
             break;
+
+        int u = *u_ptr;
+        free(u_ptr);
 
         printf("%d ", u);
         processed++;
 
         Node* temp = graph->array[u];
+
         while (temp)
         {
             int v = temp->data;
+
             in_degree[v]--;
+
             if (in_degree[v] == 0)
-                enqueue(&q, v);
+                enqueue(&q, returnMallocInt(v));
+
             temp = temp->next;
         }
     }
@@ -406,7 +424,8 @@ void topological_sort_kahn(Graph* graph)
     /* Step 4: Cycle detection */
     if (processed != size)
     {
-        printf("Cycle detected! Only %d of %d vertices were processed.\n", processed, size);
+        printf("Cycle detected! Only %d of %d vertices were processed.\n",
+               processed, size);
         printf("The graph is NOT a DAG -- topological sort is not possible.\n");
     }
     else
