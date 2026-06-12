@@ -17,7 +17,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c11 -g \
 	-Isrc/trees \
 	-Isrc/error_correction_algorithms \
 	-Isrc/job_scheduling \
-	-Isrc/dynamic_programming
+	-Isrc/dynamic_programming \
+	-Isrc/string_algorithms
 
 SRC_DIRS = \
 	src/data_structures \
@@ -31,7 +32,8 @@ SRC_DIRS = \
 	src/trees \
 	src/error_correction_algorithms \
 	src/job_scheduling \
-	src/dynamic_programming
+	src/dynamic_programming \
+	src/string_algorithms
 
 SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -137,7 +139,7 @@ $(TEST_DIR)/test_bst$(EXE): $(OBJ_DIR)/src/trees/bst.o $(OBJ_DIR)/src/utils/safe
 test_search: $(TEST_DIR)/test_search$(EXE)
 	$(TEST_DIR)/test_search$(EXE)
 
-$(TEST_DIR)/test_search$(EXE): $(OBJ_DIR)/src/searching_algorithms/linear_search.o $(OBJ_DIR)/src/utils/safe_input_int.o $(OBJ_DIR)/src/utils/history_logger.o $(OBJ_DIR)/src/searching_algorithms/binary_search.o $(OBJ_DIR)/src/sorting_algorithms_n2/selection_sort.o $(OBJ_DIR)/src/data_structures/array.o tests/test_search.c
+$(TEST_DIR)/test_search$(EXE): $(OBJ_DIR)/src/searching_algorithms/linear_search.o $(OBJ_DIR)/src/utils/safe_input_int.o $(OBJ_DIR)/src/utils/history_logger.o $(OBJ_DIR)/src/searching_algorithms/binary_search.o $(OBJ_DIR)/src/searching_algorithms/interpolation_search.o $(OBJ_DIR)/src/sorting_algorithms_n2/selection_sort.o $(OBJ_DIR)/src/data_structures/array.o tests/test_search.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@
 
