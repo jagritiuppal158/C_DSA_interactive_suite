@@ -144,9 +144,12 @@ void destroy_simple_queue(Queue* queue_ptr)
     if (queue_ptr->arr == NULL)
         return;
 
-    for (int i = queue_ptr->front; i <= queue_ptr->rear; i++)
+    if (queue_ptr->front != -1)
     {
-        free(queue_ptr->arr[i]);
+        for (int i = queue_ptr->front; i <= queue_ptr->rear; i++)
+        {
+            free(queue_ptr->arr[i]);
+        }
     }
     
     free(queue_ptr->arr);
@@ -157,8 +160,9 @@ void destroy_simple_queue(Queue* queue_ptr)
 }
 
 int enqueue_simple(Queue* queue_ptr, void* value)
-{ // rear never moves backward, so a slot freed by dequeue at the front is not reclaimed
-    if (queue_ptr == NULL || queue_ptr->arr == NULL ||queue_ptr->rear == queue_ptr->N - 1)
+{ 
+    // rear never moves backward, so a slot freed by dequeue at the front is not reclaimed
+    if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->rear == queue_ptr->N - 1)
         return -1;
     if (queue_ptr->front == -1)
         queue_ptr->front = 0;
@@ -172,7 +176,15 @@ void* dequeue_simple(Queue* queue_ptr)
     if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->front == -1 || queue_ptr->front > queue_ptr->rear)
         return NULL;
     void* front_value = queue_ptr->arr[queue_ptr->front];
-    queue_ptr->front++;
+    if (queue_ptr->front == queue_ptr->rear)
+    {
+        queue_ptr->front = -1;
+        queue_ptr->rear = -1;
+    }
+    else
+    {
+        queue_ptr->front++;
+    }
     return front_value;
 }
 
