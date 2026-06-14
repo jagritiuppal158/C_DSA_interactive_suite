@@ -1,5 +1,6 @@
 #define _DEFAULT_SOURCE
 #include "backtracking.h"
+#include "cross_platform.h"
 #include "safe_input.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,11 +9,9 @@
 
 #ifdef _WIN32
 #include <windows.h>
-#define sleep_ms(ms) Sleep(ms)
 #define clear_screen() system("cls")
 #else
 #include <unistd.h>
-#define sleep_ms(ms) usleep((ms) * 1000)
 #define clear_screen() printf("\033[H\033[J")
 #endif
 
@@ -227,7 +226,7 @@ static void print_graph_state(const GraphTopology* graph, int colors[MAX_V], int
     printf("\nStatus: \033[38;5;51;1m%s\033[0m\n", status_msg);
     printf("Delay: %dms\n", delay_time);
     fflush(stdout);
-    sleep_ms(delay_time);
+    sleep_seconds((float)delay_time / 1000);
 }
 
 static int is_safe(int v, const GraphTopology* graph, int colors[MAX_V], int c)
