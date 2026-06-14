@@ -49,27 +49,18 @@ void bucket_sort(int arr[], int n)
         long long diff = (long long)arr[i] - min_val;
         int bucket_idx = (int)((diff * (N - 1)) / (max_val - min_val));
 
-        // Create new node and prepend to bucket list
-        Node* new_node = malloc(sizeof(Node));
-        if (new_node == NULL)
+        // Insert element into the bucket list using SLL utility
+        int insert_status = sll_insertAtBeginning(&buckets[bucket_idx], arr[i]);
+        if (insert_status == -1)
         {
             // Cleanup allocated memory on error
             for (int j = 0; j < N; j++)
             {
-                Node* curr = buckets[j];
-                while (curr != NULL)
-                {
-                    Node* next_node = curr->next;
-                    free(curr);
-                    curr = next_node;
-                }
+                delete_sll(buckets[j]);
             }
             free(buckets);
             return;
         }
-        new_node->data = arr[i];
-        new_node->next = buckets[bucket_idx];
-        buckets[bucket_idx] = new_node;
     }
 
     // Gather Phase & Recursive Sort
@@ -81,19 +72,13 @@ void bucket_sort(int arr[], int n)
             continue;
         }
 
-        // Count elements in the current bucket
-        int bucket_size = 0;
-        Node* curr = buckets[i];
-        while (curr != NULL)
-        {
-            bucket_size++;
-            curr = curr->next;
-        }
+        // Count elements in the current bucket using SLL utility
+        int bucket_size = sll_getLength(buckets[i]);
 
         if (bucket_size == 1)
         {
             arr[arr_idx++] = buckets[i]->data;
-            free(buckets[i]);
+            delete_sll(buckets[i]);
             buckets[i] = NULL;
         }
         else if (bucket_size > 1)
@@ -105,27 +90,20 @@ void bucket_sort(int arr[], int n)
                 // Cleanup remaining buckets on memory failure
                 for (int j = i; j < N; j++)
                 {
-                    Node* c = buckets[j];
-                    while (c != NULL)
-                    {
-                        Node* tmp = c->next;
-                        free(c);
-                        c = tmp;
-                    }
+                    delete_sll(buckets[j]);
                 }
                 free(buckets);
                 return;
             }
 
-            curr = buckets[i];
+            Node* curr = buckets[i];
             int temp_idx = 0;
             while (curr != NULL)
             {
                 temp_arr[temp_idx++] = curr->data;
-                Node* to_free = curr;
                 curr = curr->next;
-                free(to_free);
             }
+            delete_sll(buckets[i]);
             buckets[i] = NULL;
 
             // Recursively sort the elements in the bucket
