@@ -7,6 +7,8 @@
 
 #include "tui.h"
 #include "data_structures.h"
+#include "backtracking.h"
+#include "dynamic_programming.h"
 #include "sorting_algorithms_n2.h"
 #include "searching_algorithms.h"
 #include "job_scheduling.h"
@@ -43,8 +45,33 @@ typedef struct
 static Entry ENTRIES[] = {
     /* name                    fn          folder  expanded  depth */
     {"data_structures", NULL, 1, 1, 0},
+    {"Linear Data Structures", NULL, 1, 0, 0},
     {"Singly Linked List", sll_Demo, 0, 0, 1},
     {"Doubly Linked List", dll_demo, 0, 0, 1},
+    {"Array", array_demo, 0, 0, 1},
+    {"Priority Queue", priority_queue_demo, 0, 0, 1},
+    {"Linear Queue", simple_queue_Demo, 0, 0, 1},
+    {"Circular Data Structures", NULL, 1, 0, 0},
+    {"Circular Queue", circular_queue_demo, 0, 0, 1},
+    {"Singly Circular Queue", scll_Demo, 0, 0, 1},
+    {"Double-ended Queue", deque_demo, 0, 0, 1},
+
+    
+    {"Backtracking", NULL, 1, 1, 0},
+    {"N queens", n_queens_demo, 0, 0, 1},
+    {"Sudoku", sudoku_demo, 0, 0, 1},
+    {"Rat in a Maze", rat_in_a_maze_demo, 0, 0, 1},
+    {"Graph Coloring", graph_coloring_demo, 0, 0, 1},
+    {"Knights Tour", knights_tour_demo, 0, 0, 1},
+    
+    
+    
+    {"Dynamic Programming", NULL, 1, 1, 0},
+    {"Knapsack", knapsack_demo, 0, 0, 1},
+    {"lcs", lcs_demo, 0, 0, 1},
+    {"fibonacci", fibonacci_demo, 0, 0, 1},
+    {"matrix Chain", mcm_demo, 0, 0, 1},
+
 
     {"trees", NULL, 1, 1, 0},
     {"Binary Search Tree", binary_search_tree_Demo, 0, 0, 1},
