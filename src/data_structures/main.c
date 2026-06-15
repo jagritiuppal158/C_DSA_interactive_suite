@@ -91,7 +91,39 @@ void run_legacy_menu(){
 }
 
 void tui_menu(){
-    tui_run();
+    while(1){
+    int choice;
+    int status = safe_input_int(
+        &choice,
+        "\nWelcome to DSA library built by Darshan Mukul Parekh"
+        "\n(at any point enter '-1' to exit that particular demo)\n\n"
+        "click 1 for legacy menu\n"
+        "click 2 for tui menu\n"
+        "enter choice : ",
+        1, 2 // limits
+    );
+
+    
+    if (status == -111)
+              {
+                  break;
+              }
+      
+              if (status == 0)
+              {
+                  continue;
+              }
+      
+              switch (choice)
+              {
+                  case 1:
+                      run_legacy_menu();
+                      break;
+                  case 2:
+                      tui_run();
+                      break;
+              }
+    }
 }
 
 int main()
