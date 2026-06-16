@@ -1,6 +1,7 @@
 #include "cross_platform_timer.h"
 #include "safe_input.h"
 #include "stack.h"
+#include "clear_screen.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -11,6 +12,7 @@ int check_parantheses(char* s)
     stack* parantheses = createStack();
     while (s[i] != '\0')
     {
+        clear_screen();
         printf("\nStep    : %d\n", step++);
         printf("Char    : %c\n", s[i]);
         if (s[i] == '(' || s[i] == '[' || s[i] == '{')
@@ -99,7 +101,7 @@ int check_parantheses(char* s)
         }
         printf("-----------------------------------\n");
         i++;
-        sleep_seconds(1);
+        sleep_seconds(2);
     }
     int result = isEmpty(parantheses);
     if (!result)

@@ -11,7 +11,7 @@ void dfs(Graph* graph, int start);
 void dfs_demo(void)
 {
     int edges;
-    int graph_capacity;
+    int graph_capacity = 0;
     int starting_node;
     int input_method;
     Graph* graph = NULL;
