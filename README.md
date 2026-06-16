@@ -296,6 +296,10 @@ Quadratic Probing resolves collisions by using quadratic increments (i²) to red
 ### Backtracking Algorithms
 * Rat in a Maze: **O(4^(n²))** 
 * Graph Coloring: **O(m^V)**
+* Sudoko solver: **O(6^m)**
+* Knight's tour:**O(8^(n^2))**
+* N Queen's algorithm: **O(N!)**
+
 
 ---
 
