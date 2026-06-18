@@ -1,4 +1,6 @@
 #include "history_logger.h"
+#include "clear_screen.h"
+#include "cross_platform_timer.h"
 #include "safe_input.h"
 #include "string_algorithms.h"
 #include <stdio.h>
@@ -53,54 +55,94 @@ void kmp_search(char* text, char* pattern)
     int n = strlen(text);
     int m = strlen(pattern);
     int found = 0;
+    int step = 1;
+    int matches[100];
+    int match_count = 0;
 
     if (m == 0)
         return;
 
     int* lps = (int*)malloc(m * sizeof(int));
     compute_lps_array(pattern, m, lps);
+    sleep_seconds(3);
 
     int i = 0;
     int j = 0;
     while ((n - i) >= (m - j))
     {
+        clear_screen();
+        printf("\nStep %d\n", step++);
+        printf("Text Index    : %d\n", i);
+        printf("Pattern Index : %d\n", j);
+        printf("Text Char     : %c\n", text[i]);
+        if (j < m)
+        {
+            printf("Pattern Char  : %c\n", pattern[j]);
+        }
         if (pattern[j] == text[i])
         {
+            printf("Action        : Characters matched\n");
             j++;
             i++;
+            printf("Next State    : i=%d, j=%d\n", i, j);
+            printf("----------------------------------\n");
+            sleep_seconds(2);
         }
-
         if (j == m)
         {
+            matches[match_count++] = i - j;
             printf("Pattern found at index %d\n", i - j);
+            printf("LPS Jump      : j = lps[%d] = %d\n",
+                j - 1,
+                lps[j - 1]);
             found++;
             j = lps[j - 1];
+            sleep_seconds(2);
         }
-        else if (i < n && pattern[j] != text[i])
+        else if (i < n && j < m && pattern[j] != text[i])
         {
-            if (j != 0)
-            {
-                j = lps[j - 1];
+           printf("Action        : Mismatch detected\n");
+           if (j != 0)
+           {
+              printf("LPS Jump      : j = lps[%d] = %d\n",
+                j - 1,
+                lps[j - 1]);
+              j = lps[j - 1];
             }
             else
             {
-                i = i + 1;
+               printf("Action        : Move text pointer forward\n");
+               i++;
             }
+
+            printf("----------------------------------\n");
+            sleep_seconds(2);
         }
     }
 
     free(lps);
-
+    clear_screen();
+    printf("\n==================================\n");
+    printf("KMP Search Complete\n");
+    printf("==================================\n");
     if (found == 0)
     {
-        printf("Pattern not found in the text.\n");
+       printf("\nPattern not found in the text.\n");
     }
     else
     {
-        printf("Total occurrences found: %d\n", found);
-    }
-}
+       printf("\nMatches Found:\n\n");
 
+       for (int k = 0; k < match_count; k++)
+       {
+          printf("Pattern found at index %d\n", matches[k]);
+       }
+
+          printf("\nTotal occurrences found: %d\n", found);
+    }
+
+    printf("==================================\n");
+}
 void kmp_demo(void)
 {
     while (1)
