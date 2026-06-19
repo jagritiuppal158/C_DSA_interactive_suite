@@ -9,7 +9,8 @@
 
 #define BUFFER_SIZE 5
 
-static void display_buffer_state(const int* buffer, int in, int out, int mutex, int empty, int full, int prod_blocked, int cons_blocked)
+static void display_buffer_state(const int* buffer, int in, int out, int mutex, int empty, int full,
+                                 int prod_blocked, int cons_blocked)
 {
     printf("\n\033[1;34m┌────────────────────────────────────────────────────────┐\033[0m");
     printf("\n\033[1;34m│                 PRODUCER-CONSUMER STATE                │\033[0m");
@@ -39,8 +40,10 @@ static void display_buffer_state(const int* buffer, int in, int out, int mutex, 
     printf("\n│   full_sem  = %-10d (Filled item slots)           │", full);
     printf("\n\033[1;34m├────────────────────────────────────────────────────────┤\033[0m");
     printf("\n│ Process States:                                        │");
-    printf("\n│   Producer : %-50s   │", prod_blocked ? "\033[1;31mBLOCKED (Buffer Full)\033[0m" : "\033[1;32mACTIVE/READY\033[0m");
-    printf("\n│   Consumer : %-50s   │", cons_blocked ? "\033[1;31mBLOCKED (Buffer Empty)\033[0m" : "\033[1;32mACTIVE/READY\033[0m");
+    printf("\n│   Producer : %-50s   │", prod_blocked ? "\033[1;31mBLOCKED (Buffer Full)\033[0m"
+                                                      : "\033[1;32mACTIVE/READY\033[0m");
+    printf("\n│   Consumer : %-50s   │", cons_blocked ? "\033[1;31mBLOCKED (Buffer Empty)\033[0m"
+                                                      : "\033[1;32mACTIVE/READY\033[0m");
     printf("\n\033[1;34m└────────────────────────────────────────────────────────┘\033[0m\n");
 }
 
@@ -93,7 +96,8 @@ void producer_consumer_demo(void)
             if (empty == 0)
             {
                 prod_blocked = 1;
-                printf("\033[1;31mProducer: Empty Semaphore is 0 (Buffer full). Producer is BLOCKED.\033[0m\n");
+                printf("\033[1;31mProducer: Empty Semaphore is 0 (Buffer full). Producer is "
+                       "BLOCKED.\033[0m\n");
             }
             else
             {
@@ -110,7 +114,9 @@ void producer_consumer_demo(void)
 
                     buffer[in] = item_counter++;
                     int produced = buffer[in];
-                    printf("\033[1;32mProducer: Acquired mutex, placed item P%d at slot %d.\033[0m\n", produced, in);
+                    printf(
+                        "\033[1;32mProducer: Acquired mutex, placed item P%d at slot %d.\033[0m\n",
+                        produced, in);
                     in = (in + 1) % BUFFER_SIZE;
 
                     mutex++; // release lock
@@ -119,7 +125,8 @@ void producer_consumer_demo(void)
                     if (cons_blocked)
                     {
                         cons_blocked = 0;
-                        printf("\033[1;32mProducer: Signal(full_sem) sent. Consumer is now UNBLOCKED.\033[0m\n");
+                        printf("\033[1;32mProducer: Signal(full_sem) sent. Consumer is now "
+                               "UNBLOCKED.\033[0m\n");
                     }
                 }
             }
@@ -133,7 +140,8 @@ void producer_consumer_demo(void)
             if (full == 0)
             {
                 cons_blocked = 1;
-                printf("\033[1;31mConsumer: Full Semaphore is 0 (Buffer empty). Consumer is BLOCKED.\033[0m\n");
+                printf("\033[1;31mConsumer: Full Semaphore is 0 (Buffer empty). Consumer is "
+                       "BLOCKED.\033[0m\n");
             }
             else
             {
@@ -150,7 +158,9 @@ void producer_consumer_demo(void)
 
                     int consumed = buffer[out];
                     buffer[out] = 0; // clear slot
-                    printf("\033[1;32mConsumer: Acquired mutex, consumed item P%d from slot %d.\033[0m\n", consumed, out);
+                    printf("\033[1;32mConsumer: Acquired mutex, consumed item P%d from slot "
+                           "%d.\033[0m\n",
+                           consumed, out);
                     out = (out + 1) % BUFFER_SIZE;
 
                     mutex++; // release lock
@@ -159,7 +169,8 @@ void producer_consumer_demo(void)
                     if (prod_blocked)
                     {
                         prod_blocked = 0;
-                        printf("\033[1;32mConsumer: Signal(empty_sem) sent. Producer is now UNBLOCKED.\033[0m\n");
+                        printf("\033[1;32mConsumer: Signal(empty_sem) sent. Producer is now "
+                               "UNBLOCKED.\033[0m\n");
                     }
                 }
             }
@@ -171,15 +182,18 @@ void producer_consumer_demo(void)
             printf("\nEnter number of simulation steps to run automatically (1 to 20): ");
             int steps;
             int step_status = safe_input_int(&steps, "", 1, 20);
-            if (step_status != 1) continue;
+            if (step_status != 1)
+                continue;
 
             srand((unsigned int)time(NULL));
 
             for (int s = 0; s < steps; s++)
             {
                 clear_screen();
-                printf("\n\033[1;36m=== Auto-Simulation (Step %d of %d) ===\033[0m\n", s + 1, steps);
-                display_buffer_state(buffer, in, out, mutex, empty, full, prod_blocked, cons_blocked);
+                printf("\n\033[1;36m=== Auto-Simulation (Step %d of %d) ===\033[0m\n", s + 1,
+                       steps);
+                display_buffer_state(buffer, in, out, mutex, empty, full, prod_blocked,
+                                     cons_blocked);
 
                 int act = rand() % 2; // 0 = produce, 1 = consume
                 if (act == 0)
@@ -195,7 +209,8 @@ void producer_consumer_demo(void)
                         prod_blocked = 0;
                         empty--;
                         buffer[in] = item_counter++;
-                        printf("\033[1;32mProducer: Placed item P%d at slot %d.\033[0m\n", buffer[in], in);
+                        printf("\033[1;32mProducer: Placed item P%d at slot %d.\033[0m\n",
+                               buffer[in], in);
                         in = (in + 1) % BUFFER_SIZE;
                         full++;
                         if (cons_blocked)
@@ -219,7 +234,8 @@ void producer_consumer_demo(void)
                         full--;
                         int consumed = buffer[out];
                         buffer[out] = 0;
-                        printf("\033[1;32mConsumer: Consumed item P%d from slot %d.\033[0m\n", consumed, out);
+                        printf("\033[1;32mConsumer: Consumed item P%d from slot %d.\033[0m\n",
+                               consumed, out);
                         out = (out + 1) % BUFFER_SIZE;
                         empty++;
                         if (prod_blocked)
@@ -237,7 +253,8 @@ void producer_consumer_demo(void)
         }
         else if (choice == 4)
         {
-            for (int i = 0; i < BUFFER_SIZE; i++) buffer[i] = 0;
+            for (int i = 0; i < BUFFER_SIZE; i++)
+                buffer[i] = 0;
             in = 0;
             out = 0;
             mutex = 1;

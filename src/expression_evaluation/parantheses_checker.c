@@ -1,7 +1,7 @@
+#include "clear_screen.h"
 #include "cross_platform_timer.h"
 #include "safe_input.h"
 #include "stack.h"
-#include "clear_screen.h"
 #include <stdio.h>
 #include <string.h>
 

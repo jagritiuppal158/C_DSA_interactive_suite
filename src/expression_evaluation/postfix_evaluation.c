@@ -1,15 +1,14 @@
+#include "clear_screen.h"
 #include "cross_platform_timer.h"
+#include "expression.h"
 #include "safe_input.h"
 #include "stack.h"
-#include "expression.h"
-#include "clear_screen.h"
 #include <ctype.h>
 #include <stdio.h>
 
 // if postfix expression attempts to divide by zero or the stack doesnt get emptied at the end of
 // main while loop, it indicates malformed postfix expression and program exits with error code '-1'
 // and on succesful evaluation returns '0' maximum expression length is 50 characters
-
 
 void postfix_evaluation_Demo(void)
 {

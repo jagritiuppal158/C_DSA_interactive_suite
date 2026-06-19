@@ -1,8 +1,8 @@
+#include "clear_screen.h"
 #include "cross_platform_timer.h"
+#include "expression.h"
 #include "safe_input.h"
 #include "stack.h"
-#include "expression.h"
-#include "clear_screen.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>

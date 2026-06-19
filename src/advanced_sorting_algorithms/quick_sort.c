@@ -34,7 +34,8 @@ static int partition(int arr[], int low, int high, int total_len)
         if (left >= right)
             break;
 
-        visualize_sort(arr, total_len, left, right, low, "Quick Sort: Swapping out-of-order elements");
+        visualize_sort(arr, total_len, left, right, low,
+                       "Quick Sort: Swapping out-of-order elements");
         swap(&arr[left], &arr[right]);
     }
     visualize_sort(arr, total_len, low, right, -1, "Quick Sort: Placing pivot in correct position");

@@ -9,7 +9,8 @@
 #endif
 #endif
 
-void visualize_sort(const int arr[], int n, int active_idx1, int active_idx2, int pivot_idx, const char* status_message)
+void visualize_sort(const int arr[], int n, int active_idx1, int active_idx2, int pivot_idx,
+                    const char* status_message)
 {
     if (n <= 0 || !is_terminal_interactive())
     {

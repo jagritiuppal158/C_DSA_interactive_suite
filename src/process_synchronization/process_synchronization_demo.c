@@ -9,14 +9,13 @@ void process_synchronization_demo(void)
     {
         clear_screen();
         int choice;
-        int status = safe_input_int(
-            &choice,
-            "\n\n--- Process Synchronization Demos ---\n"
-            "1. Producer-Consumer Problem (Bounded Buffer)\n"
-            "2. Dining Philosophers Problem\n"
-            "3. Peterson's Algorithm (2-Process Mutual Exclusion)\n"
-            "Enter choice (-1 to exit): ",
-            1, 3);
+        int status = safe_input_int(&choice,
+                                    "\n\n--- Process Synchronization Demos ---\n"
+                                    "1. Producer-Consumer Problem (Bounded Buffer)\n"
+                                    "2. Dining Philosophers Problem\n"
+                                    "3. Peterson's Algorithm (2-Process Mutual Exclusion)\n"
+                                    "Enter choice (-1 to exit): ",
+                                    1, 3);
 
         if (status == INPUT_EXIT_SIGNAL || choice == -1)
         {

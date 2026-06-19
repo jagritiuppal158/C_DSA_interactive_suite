@@ -74,11 +74,13 @@ void shell_sort(int arr[], int length_of_array)
         {
             int temp = arr[i];
             int j;
-            visualize_sort(arr, length_of_array, i, -1, -1, "Shell Sort: Selecting element for insertion");
+            visualize_sort(arr, length_of_array, i, -1, -1,
+                           "Shell Sort: Selecting element for insertion");
             // Shift earlier gap-sorted elements up until correct location is found
             for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
             {
-                visualize_sort(arr, length_of_array, j, j - gap, -1, "Shell Sort: Shifting elements");
+                visualize_sort(arr, length_of_array, j, j - gap, -1,
+                               "Shell Sort: Shifting elements");
                 arr[j] = arr[j - gap];
             }
             arr[j] = temp;

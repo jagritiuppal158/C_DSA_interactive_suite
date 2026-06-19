@@ -160,15 +160,14 @@ bool deque_is_full(const Queue* dq);
 void display_deque(const Queue* dq);
 void deque_demo(void);
 
-
-// For Doubly cirular linked list 
+// For Doubly cirular linked list
 
 typedef struct dcll_Node
 {
     int data;
-    struct dcll_Node * next;
-    struct dcll_Node * prev;
-}dcll_Node;
+    struct dcll_Node* next;
+    struct dcll_Node* prev;
+} dcll_Node;
 
 typedef struct dcll
 {
@@ -190,7 +189,5 @@ int dcll_getLength(const dcll* list);
 void dcll_printlist(const dcll* list);
 void dcll_destroy(dcll* list);
 void dcll_Demo(void);
-
-
 
 #endif

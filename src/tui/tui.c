@@ -5,29 +5,35 @@
 #include <string.h>
 // #include <locale.h>
 
-#include "tui.h"
-#include "data_structures.h"
+#include "advanced_sorting.h"
 #include "backtracking.h"
+#include "data_structures.h"
 #include "dynamic_programming.h"
-#include "sorting_algorithms_n2.h"
-#include "searching_algorithms.h"
+#include "error_correction_algorithms.h"
+#include "expression.h"
+#include "graph_traversals.h"
+#include "hash.h"
 #include "job_scheduling.h"
 #include "process_synchronization.h"
-#include "hash.h"
-#include "graph_traversals.h"
-#include "error_correction_algorithms.h"
-#include "trees.h"
-#include "advanced_sorting.h"
-#include "expression.h"
-#include "string_algorithms.h"
 #include "safe_input.h"
+#include "searching_algorithms.h"
+#include "sorting_algorithms_n2.h"
+#include "string_algorithms.h"
+#include "trees.h"
+#include "tui.h"
 
 /* ── types ──────────────────────────────────────────────────────────────────── */
 typedef void (*demo_fn)(void);
 
 // for non void return type demos
-static void linear_search_demo_wrapper(void) {(void)linear_search_demo(); }
-static void binary_search_demo_wrapper(void) {(void)binary_search_demo(); }
+static void linear_search_demo_wrapper(void)
+{
+    (void)linear_search_demo();
+}
+static void binary_search_demo_wrapper(void)
+{
+    (void)binary_search_demo();
+}
 
 typedef struct
 {
