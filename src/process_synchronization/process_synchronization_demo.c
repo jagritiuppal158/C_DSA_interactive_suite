@@ -2,6 +2,7 @@
 #include "process_synchronization.h"
 #include "safe_input.h"
 #include <stdio.h>
+#include "../utils/config.h"
 
 void process_synchronization_demo(void)
 {
