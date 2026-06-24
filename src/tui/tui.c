@@ -15,6 +15,7 @@
 #include "job_scheduling.h"
 #include "process_synchronization.h"
 #include "safe_input.h"
+#include "display_header.h"
 #include "searching_algorithms.h"
 #include "sorting_algorithms_n2.h"
 #include "string_algorithms.h"
@@ -412,7 +413,8 @@ static void run_demo(demo_fn fn, const char* name, State* s)
     /* hand terminal back to normal mode */
     endwin();
 
-    printf("\n\033[1;36m═══ %s ═══\033[0m\n\n", name);
+    /* clear the screen and show a fresh header for this demo */
+    display_header(name);
     fn();
     printf("\n\033[1;36m═══ End of %s ═══\033[0m\n", name);
     printf("\nPress Enter to return to menu...");
