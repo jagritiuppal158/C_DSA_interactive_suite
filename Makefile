@@ -375,67 +375,67 @@ $(TEST_DIR)/test_expression_evaluation$(EXE): \
 
 test_fcfs: $(TEST_DIR)/test_fcfs$(EXE)
 	$(TEST_DIR)/test_fcfs$(EXE)
-$(TEST_DIR)/test_fcfs$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/fcfs.o,$(OBJS)) tests/test_fcfs.c
+$(TEST_DIR)/test_fcfs$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/fcfs.o,$(OBJS)) tests/job_scheduling/test_fcfs.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_sjf: $(TEST_DIR)/test_sjf$(EXE)
 	$(TEST_DIR)/test_sjf$(EXE)
-$(TEST_DIR)/test_sjf$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/sjf.o,$(OBJS)) tests/test_sjf.c
+$(TEST_DIR)/test_sjf$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/sjf.o,$(OBJS)) tests/job_scheduling/test_sjf.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_srtf: $(TEST_DIR)/test_srtf$(EXE)
 	$(TEST_DIR)/test_srtf$(EXE)
-$(TEST_DIR)/test_srtf$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/srtf.o,$(OBJS)) tests/test_srtf.c
+$(TEST_DIR)/test_srtf$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/srtf.o,$(OBJS)) tests/job_scheduling/test_srtf.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_round_robin: $(TEST_DIR)/test_round_robin$(EXE)
 	$(TEST_DIR)/test_round_robin$(EXE)
-$(TEST_DIR)/test_round_robin$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/round_robin.o,$(OBJS)) tests/test_round_robin.c
+$(TEST_DIR)/test_round_robin$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/round_robin.o,$(OBJS)) tests/job_scheduling/test_round_robin.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_priority_scheduling: $(TEST_DIR)/test_priority_scheduling$(EXE)
 	$(TEST_DIR)/test_priority_scheduling$(EXE)
-$(TEST_DIR)/test_priority_scheduling$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/priority_scheduling.o,$(OBJS)) tests/test_priority_scheduling.c
+$(TEST_DIR)/test_priority_scheduling$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/priority_scheduling.o,$(OBJS)) tests/job_scheduling/test_priority_scheduling.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_preemptive_priority: $(TEST_DIR)/test_preemptive_priority$(EXE)
 	$(TEST_DIR)/test_preemptive_priority$(EXE)
-$(TEST_DIR)/test_preemptive_priority$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/preemptive_priority.o,$(OBJS)) tests/test_preemptive_priority.c
+$(TEST_DIR)/test_preemptive_priority$(EXE): $(filter-out $(OBJ_DIR)/src/job_scheduling/preemptive_priority.o,$(OBJS)) tests/job_scheduling/test_preemptive_priority.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_dijkstra: $(TEST_DIR)/test_dijkstra$(EXE)
 	$(TEST_DIR)/test_dijkstra$(EXE)
-$(TEST_DIR)/test_dijkstra$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/dijkstra.o,$(OBJS)) tests/test_dijkstra.c
+$(TEST_DIR)/test_dijkstra$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/dijkstra.o,$(OBJS)) tests/graph_traversals/test_dijkstra.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_bellman_ford: $(TEST_DIR)/test_bellman_ford$(EXE)
 	$(TEST_DIR)/test_bellman_ford$(EXE)
-$(TEST_DIR)/test_bellman_ford$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/bellman_ford.o,$(OBJS)) tests/test_bellman_ford.c
+$(TEST_DIR)/test_bellman_ford$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/bellman_ford.o,$(OBJS)) tests/graph_traversals/test_bellman_ford.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_bfs: $(TEST_DIR)/test_bfs$(EXE)
 	$(TEST_DIR)/test_bfs$(EXE)
-$(TEST_DIR)/test_bfs$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/bfs.o,$(OBJS)) tests/test_bfs.c
+$(TEST_DIR)/test_bfs$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/bfs.o,$(OBJS)) tests/graph_traversals/test_bfs.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_dfs: $(TEST_DIR)/test_dfs$(EXE)
 	$(TEST_DIR)/test_dfs$(EXE)
-$(TEST_DIR)/test_dfs$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/dfs.o,$(OBJS)) tests/test_dfs.c
+$(TEST_DIR)/test_dfs$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/dfs.o,$(OBJS)) tests/graph_traversals/test_dfs.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 test_topological_sort: $(TEST_DIR)/test_topological_sort$(EXE)
 	$(TEST_DIR)/test_topological_sort$(EXE)
-$(TEST_DIR)/test_topological_sort$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/topological_sort.o,$(OBJS)) tests/test_topological_sort.c
+$(TEST_DIR)/test_topological_sort$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/topological_sort.o,$(OBJS)) tests/graph_traversals/test_topological_sort.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
