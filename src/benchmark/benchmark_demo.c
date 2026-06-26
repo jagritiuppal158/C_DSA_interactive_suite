@@ -55,8 +55,7 @@ void benchmark_menu_demo(void)
                 run_graphs_benchmark(n);
                 break;
             case 4:
-                printf("\nMST benchmark selected for N = %d\n", n);
-                printf("Benchmark module not implemented yet. Implementing in PR 6.\n");
+                run_mst_benchmark(n);
                 break;
             case 5:
                 printf("\nJob Scheduling benchmark selected for N = %d\n", n);

@@ -46,4 +46,8 @@ void run_searching_benchmark(int n);
  * Runs benchmarks for Graph Shortest Path algorithms with input size V (vertices).
  */
 void run_graphs_benchmark(int v);
+/**
+ * Runs benchmarks for MST algorithms with input size V (vertices).
+ */
+void run_mst_benchmark(int v);
 #endif // BENCHMARK_H
