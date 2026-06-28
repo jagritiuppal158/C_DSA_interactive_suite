@@ -14,9 +14,7 @@ The codebase is structured as a reusable **DSA library**, with an interactive, c
 - [Demos](#demos)
 - [Build Instructions](#build-instructions-recommended)
 - [Continuous Integration](#continuous-integration)
-- [Project Overview](#project-overview)
 - [Time Complexity](#time-complexity)
-- [Project Features](#project-features)
 - [License](#license)
 
 ---
@@ -175,7 +173,6 @@ On every push or pull request:
 
 If any test fails or Valgrind detects a memory error, the CI job fails automatically.
 
----
 
 ## Time Complexity
 
@@ -235,7 +232,8 @@ If any test fails or Valgrind detects a memory error, the CI job fails automatic
 * N Queen's algorithm: **O(N!)**
 
 
----
+
+
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
