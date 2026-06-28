@@ -20,6 +20,9 @@ jobs:
       - name: Format the code
         run: make fmt
 
+      - name: Check formatting
+        run: git diff --exit-code
+        
       - name: Run tests
         run: make test
 
