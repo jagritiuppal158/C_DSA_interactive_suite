@@ -1,9 +1,9 @@
+#include "../../src/graph_traversals/edmonds_karp.c"
+#include "graph_traversals.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "graph_traversals.h"
-#include "../../src/graph_traversals/edmonds_karp.c"
 
 void test_ek_simple()
 {
