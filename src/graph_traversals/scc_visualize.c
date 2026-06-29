@@ -149,13 +149,19 @@ static void tarjan_dfs_vis(Graph* graph, int u, int* disc, int* low, bool* on_st
 
         (*count)++;
         int** new_sccs = realloc(*sccs, sizeof(int*) * (*count));
-        int* new_sizes = realloc(*sizes, sizeof(int) * (*count));
-        if (new_sccs == NULL || new_sizes == NULL)
+        if (new_sccs == NULL)
         {
             free(comp);
             return;
         }
         *sccs = new_sccs;
+
+        int* new_sizes = realloc(*sizes, sizeof(int) * (*count));
+        if (new_sizes == NULL)
+        {
+            free(comp);
+            return;
+        }
         *sizes = new_sizes;
         (*sccs)[*count - 1] = comp;
         (*sizes)[*count - 1] = comp_size;
@@ -303,8 +309,7 @@ static void visualize_kosaraju(Graph* graph)
 
             count++;
             int** new_sccs = realloc(sccs, sizeof(int*) * count);
-            int* new_sizes = realloc(sizes, sizeof(int) * count);
-            if (new_sccs == NULL || new_sizes == NULL)
+            if (new_sccs == NULL)
             {
                 free(comp);
                 free_scc_result(sccs, sizes, count - 1);
@@ -314,6 +319,17 @@ static void visualize_kosaraju(Graph* graph)
                 return;
             }
             sccs = new_sccs;
+
+            int* new_sizes = realloc(sizes, sizeof(int) * count);
+            if (new_sizes == NULL)
+            {
+                free(comp);
+                free_scc_result(sccs, sizes, count - 1);
+                free_graph(trans);
+                destroyStack(st);
+                free(visited);
+                return;
+            }
             sizes = new_sizes;
             sccs[count - 1] = comp;
             sizes[count - 1] = comp_size;
