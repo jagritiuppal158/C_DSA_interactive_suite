@@ -1,11 +1,12 @@
 #include "graph_traversals.h"
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
 
 static bool dinic_bfs(int V, int** residual, int source, int sink, int* level)
 {
-    for (int i = 0; i < V; i++) level[i] = -1;
+    for (int i = 0; i < V; i++)
+        level[i] = -1;
     level[source] = 0;
 
     int* queue = malloc(sizeof(int) * V);
@@ -70,7 +71,8 @@ int dinic(weightedGraph* graph, int source, int sink)
         residual[i] = calloc(V, sizeof(int));
         if (residual[i] == NULL)
         {
-            for (int j = 0; j < i; j++) free(residual[j]);
+            for (int j = 0; j < i; j++)
+                free(residual[j]);
             free(residual);
             return 0;
         }
@@ -92,7 +94,8 @@ int dinic(weightedGraph* graph, int source, int sink)
     {
         free(level);
         free(start);
-        for (int i = 0; i < V; i++) free(residual[i]);
+        for (int i = 0; i < V; i++)
+            free(residual[i]);
         free(residual);
         return 0;
     }
