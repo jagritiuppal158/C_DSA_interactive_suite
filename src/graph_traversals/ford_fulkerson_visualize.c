@@ -1,20 +1,21 @@
+#include "clear_screen.h"
+#include "config.h"
 #include "graph_traversals.h"
 #include "safe_input.h"
-#include "config.h"
-#include "clear_screen.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include <string.h>
 
-static void print_flow_state(weightedGraph* graph, int** residual, int source, int sink, int* parent, int curr_v, const char* phase)
+static void print_flow_state(weightedGraph* graph, int** residual, int source, int sink,
+                             int* parent, int curr_v, const char* phase)
 {
     clear_screen();
     printf("\n=== Maximum Flow Visualizer (%s) ===\n\n", phase);
     printf("Source Node: %d | Sink Node: %d\n\n", source, sink);
 
     int V = graph->V;
-    
+
     // Print capacities and current flow
     printf("Edge flows and capacities:\n");
     for (int u = 0; u < V; u++)
@@ -25,7 +26,7 @@ static void print_flow_state(weightedGraph* graph, int** residual, int source, i
             int v = temp->destination;
             int capacity = temp->weight;
             int current_flow = capacity - residual[u][v];
-            
+
             // Highlight active nodes/edges in the path
             bool in_path = false;
             if (parent != NULL)
@@ -39,14 +40,16 @@ static void print_flow_state(weightedGraph* graph, int** residual, int source, i
                     }
                 }
             }
-            
+
             if (u == curr_v || v == curr_v)
             {
-                printf("  \033[1;31m%d -> %d: Flow = %d / %d\033[0m\n", u, v, current_flow, capacity);
+                printf("  \033[1;31m%d -> %d: Flow = %d / %d\033[0m\n", u, v, current_flow,
+                       capacity);
             }
             else if (in_path)
             {
-                printf("  \033[1;32m%d -> %d: Flow = %d / %d (Augmenting Edge)\033[0m\n", u, v, current_flow, capacity);
+                printf("  \033[1;32m%d -> %d: Flow = %d / %d (Augmenting Edge)\033[0m\n", u, v,
+                       current_flow, capacity);
             }
             else
             {
@@ -59,9 +62,11 @@ static void print_flow_state(weightedGraph* graph, int** residual, int source, i
 
     // Print Residual Capacity Matrix
     printf("Residual Capacity Matrix:\n    ");
-    for (int i = 0; i < V; i++) printf(" %2d ", i);
+    for (int i = 0; i < V; i++)
+        printf(" %2d ", i);
     printf("\n    ");
-    for (int i = 0; i < V; i++) printf("----");
+    for (int i = 0; i < V; i++)
+        printf("----");
     printf("\n");
     for (int i = 0; i < V; i++)
     {
@@ -94,22 +99,25 @@ static void print_flow_state(weightedGraph* graph, int** residual, int source, i
         for (int i = path_len - 1; i >= 0; i--)
         {
             printf("%d", path[i]);
-            if (i > 0) printf(" -> ");
+            if (i > 0)
+                printf(" -> ");
         }
         printf("\n");
     }
-    
+
     fflush(stdout);
     dynamic_sleep();
 }
 
-static bool dfs_augmenting_path_vis(weightedGraph* graph, int** residual, int u, int sink, bool* visited, int* parent, const char* phase)
+static bool dfs_augmenting_path_vis(weightedGraph* graph, int** residual, int u, int sink,
+                                    bool* visited, int* parent, const char* phase)
 {
     if (u == sink)
         return true;
 
     visited[u] = true;
-    print_flow_state(graph, residual, parent[sink] == -1 ? u : parent[sink], sink, parent, u, phase);
+    print_flow_state(graph, residual, parent[sink] == -1 ? u : parent[sink], sink, parent, u,
+                     phase);
 
     int V = graph->V;
     for (int v = 0; v < V; v++)
@@ -152,10 +160,12 @@ static void visualize_ford_fulkerson(weightedGraph* graph, int source, int sink)
     while (1)
     {
         memset(visited, 0, sizeof(bool) * V);
-        for (int i = 0; i < V; i++) parent[i] = -1;
+        for (int i = 0; i < V; i++)
+            parent[i] = -1;
 
         print_flow_state(graph, residual, source, sink, NULL, -1, "Ford-Fulkerson searching path");
-        if (!dfs_augmenting_path_vis(graph, residual, source, sink, visited, parent, "Ford-Fulkerson Path Found"))
+        if (!dfs_augmenting_path_vis(graph, residual, source, sink, visited, parent,
+                                     "Ford-Fulkerson Path Found"))
         {
             break;
         }
@@ -171,7 +181,8 @@ static void visualize_ford_fulkerson(weightedGraph* graph, int source, int sink)
             }
         }
 
-        print_flow_state(graph, residual, source, sink, parent, -1, "Ford-Fulkerson (Bottleneck calculated)");
+        print_flow_state(graph, residual, source, sink, parent, -1,
+                         "Ford-Fulkerson (Bottleneck calculated)");
 
         // Update capacities
         for (int v = sink; v != source; v = parent[v])
@@ -180,9 +191,10 @@ static void visualize_ford_fulkerson(weightedGraph* graph, int source, int sink)
             residual[u][v] -= path_flow;
             residual[v][u] += path_flow;
         }
-        
+
         max_flow += path_flow;
-        print_flow_state(graph, residual, source, sink, parent, -1, "Ford-Fulkerson (Flow augmented)");
+        print_flow_state(graph, residual, source, sink, parent, -1,
+                         "Ford-Fulkerson (Flow augmented)");
     }
 
     clear_screen();
@@ -193,7 +205,8 @@ static void visualize_ford_fulkerson(weightedGraph* graph, int source, int sink)
     fflush(stdout);
     getchar();
 
-    for (int i = 0; i < V; i++) free(residual[i]);
+    for (int i = 0; i < V; i++)
+        free(residual[i]);
     free(residual);
     free(parent);
     free(visited);
@@ -302,7 +315,8 @@ void max_flow_demo(void)
         while (1)
         {
             int edges_capacity_status = safe_input_int(
-                &edges, "\nenter number of directed edges (between 1 and 100), enter '-1' to exit :", 1,
+                &edges,
+                "\nenter number of directed edges (between 1 and 100), enter '-1' to exit :", 1,
                 100);
 
             if (edges_capacity_status == INPUT_EXIT_SIGNAL)
@@ -320,7 +334,8 @@ void max_flow_demo(void)
             break;
         }
 
-        printf("\nenter directed edges (src dest weight) (vertices from 0 to %d, enter '-1' to exit):\n",
+        printf("\nenter directed edges (src dest weight) (vertices from 0 to %d, enter '-1' to "
+               "exit):\n",
                graph_capacity - 1);
 
         for (int i = 0; i < edges; i++)
@@ -384,7 +399,8 @@ void max_flow_demo(void)
             free_weightedGraph(graph);
             return;
         }
-        if (src_status == 0) continue;
+        if (src_status == 0)
+            continue;
 
         int sink_status = safe_input_int(&sink, "Enter sink node: ", 0, graph_capacity - 1);
         if (sink_status == INPUT_EXIT_SIGNAL)
@@ -392,7 +408,8 @@ void max_flow_demo(void)
             free_weightedGraph(graph);
             return;
         }
-        if (sink_status == 0) continue;
+        if (sink_status == 0)
+            continue;
 
         if (source == sink)
         {
