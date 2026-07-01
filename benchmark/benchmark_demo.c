@@ -1,5 +1,5 @@
-#include "display_header.h"
 #include "benchmark.h"
+#include "display_header.h"
 #include "safe_input.h"
 #include <stdio.h>
 
