@@ -49,8 +49,11 @@ typedef struct FibonacciNode
     struct FibonacciNode* right;
 } FibonacciNode;
 
+/* Constructor & Destructor */
 FibonacciNode* create_fibonacci_node(int key, int value);
 void destroy_fibonacci_heap(FibonacciNode* min_node);
+
+/* Core Heap Operations */
 FibonacciNode* fib_heap_insert(FibonacciNode* min_node, int key, int value);
 FibonacciNode* fib_heap_union(FibonacciNode* min1, FibonacciNode* min2);
 FibonacciNode* fib_heap_extract_min(FibonacciNode* min_node, int* min_key, int* min_val);
@@ -81,12 +84,14 @@ typedef struct SkewNode
     struct SkewNode* right;
 } SkewNode;
 
+/* Leftist Heap Operations */
 LeftistNode* create_leftist_node(int key, int value);
 void destroy_leftist_heap(LeftistNode* root);
 LeftistNode* leftist_heap_merge(LeftistNode* h1, LeftistNode* h2);
 LeftistNode* leftist_heap_insert(LeftistNode* root, int key, int value);
 LeftistNode* leftist_heap_extract_min(LeftistNode* root, int* min_key, int* min_val);
 
+/* Skew Heap Operations */
 SkewNode* create_skew_node(int key, int value);
 void destroy_skew_heap(SkewNode* root);
 SkewNode* skew_heap_merge(SkewNode* h1, SkewNode* h2);
