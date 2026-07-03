@@ -1,66 +1,31 @@
 #ifndef ALGORITHMS_H
 #define ALGORITHMS_H
 
-/**
- * @brief Run the bubble sort optimized demonstration module.
- * @return void
- */
+// Run the bubble sort optimized demonstration module.
 void bubble_sort_optimized_demo(void);
 
-/**
- * @brief Run the insertion sort demonstration module.
- * @return void
- */
+// Run the insertion sort demonstration module.
 void insertion_sort_demo(void);
 
-/**
- * @brief Run the selection sort demonstration module.
- * @return void
- */
+// Run the selection sort demonstration module.
 void selection_sort_demo(void);
 
-/**
- * @brief Run the shell sort demonstration module.
- * @return void
- */
+// Run the shell sort demonstration module.
 void shell_sort_demo(void);
 
-/**
- * @brief Run the sorting algorithms demonstration module.
- * @return void
- */
+// Run the sorting algorithms demonstration module.
 void sorting_algorithms_n2_demo(void);
 
-/**
- * @brief Sort an integer array using selection sort.
- * @param arr The array to sort.
- * @param length_of_array The number of elements in the array.
- * @return void
- */
+// Sort an integer array using selection sort.
 void selection_sort(int arr[], int length_of_array);
 
-/**
- * @brief Sort an integer array using shell sort.
- * @param arr The array to sort.
- * @param length_of_array The number of elements in the array.
- * @return void
- */
+// Sort an integer array using shell sort.
 void shell_sort(int arr[], int length_of_array);
 
-/**
- * @brief Sort an integer array using an optimized bubble sort.
- * @param arr The array to sort.
- * @param length_of_array The number of elements in the array.
- * @return void
- */
+// Sort an integer array using an optimized bubble sort.
 void bubble_sort_optimized(int arr[], int length_of_array);
 
-/**
- * @brief Sort an integer array using insertion sort.
- * @param arr The array to sort.
- * @param length_of_array The number of elements in the array.
- * @return void
- */
+// Sort an integer array using insertion sort.
 void insertion_sort(int arr[], int length_of_array);
 
 #endif
