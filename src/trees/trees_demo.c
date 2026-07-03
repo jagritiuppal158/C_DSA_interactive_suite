@@ -68,12 +68,10 @@ void trees_demo(void)
                 display_header("Segment Tree");
                 segment_tree_demo();
                 break;
-
             case 8:
                 display_header("Fenwick Tree (BIT)");
                 fenwick_tree_demo();
                 break;
-        
         }
     }
 }

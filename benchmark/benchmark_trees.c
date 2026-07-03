@@ -52,10 +52,14 @@ void run_trees_benchmark(int n)
     printf("%-30s %-20s %-12s %-10s\n", "Structure", "Execution Time", "Peak Memory", "Status");
     printf("------------------------------------------------------------------------\n");
 
-    const char* algos[] = {"Binary Search Tree (BST)", "Threaded Binary Tree (TBT)",
-                           "AVL Tree (Balanced)",      "Trie (Prefix Tree)",
-                           "B-Tree (t = 3)",           "B+ Tree (order = 4)",
-                           "Segment Tree",             "Fenwick Tree (BIT)"};
+    const char* algos[] = {"Binary Search Tree (BST)",
+                           "Threaded Binary Tree (TBT)",
+                           "AVL Tree (Balanced)",
+                           "Trie (Prefix Tree)",
+                           "B-Tree (t = 3)",
+                           "B+ Tree (order = 4)",
+                           "Segment Tree",
+                           "Fenwick Tree (BIT)"};
 
     for (int i = 0; i < 8; i++)
     {
