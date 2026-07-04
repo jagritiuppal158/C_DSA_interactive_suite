@@ -54,4 +54,8 @@ int crc_verify(const char* codeword, const char* generator, char* remainder_out)
 void lrc_calculate(const char* const* words, int num_words, int word_len, char* lrc_out);
 int lrc_verify(const char* const* words, int num_words, int word_len, const char* received_lrc);
 
+/* Hamming Logic */
+void hamming_generate(const char* data, char* codeword_out);
+int hamming_verify(const char* received_codeword, char* corrected_codeword_out, char* data_out);
+
 #endif /* ERROR_CORRECTION_ALGORITHMS_H */
