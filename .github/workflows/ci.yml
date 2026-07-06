@@ -28,3 +28,6 @@ jobs:
 
       - name: Memory check with valgrind
         run: make valgrind
+
+      - name: Build and test with AddressSanitizer + UBSan
+        run: make asan

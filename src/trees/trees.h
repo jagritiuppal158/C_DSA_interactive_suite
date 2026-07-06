@@ -156,4 +156,65 @@ void inorder_traversal(SegmentTree* st, int node, int start, int end);
 void postorder_traversal(SegmentTree* st, int node, int start, int end);
 void segment_tree_demo(void);
 
+// For Fenwick Tree (Binary Indexed Tree)
+typedef struct
+{
+    int* BIT1;
+    int* BIT2;
+    int size;
+} FenwickTree;
+
+FenwickTree* create_fenwick_tree(int size);
+void destroy_fenwick_tree(FenwickTree* ft);
+void fenwick_point_update(int* BIT, int n, int idx, int delta);
+void fenwick_range_update(FenwickTree* ft, int l, int r, int delta);
+int fenwick_point_query(int* BIT, int idx);
+int fenwick_range_query(FenwickTree* ft, int l, int r);
+void fenwick_tree_demo(void);
+// For Splay Tree (Self-Adjusting Binary Search Tree)
+typedef struct splayNode
+{
+    int key;
+    struct splayNode* left;
+    struct splayNode* right;
+} splayNode;
+
+splayNode* splay_create_node(int key);
+splayNode* splay_tree_splay(splayNode* root, int key);
+splayNode* splay_tree_search(splayNode* root, int key);
+splayNode* splay_tree_insert(splayNode* root, int key);
+splayNode* splay_tree_delete(splayNode* root, int key);
+void splay_tree_preorder(splayNode* root);
+void destroy_splay_tree(splayNode* root);
+void splay_tree_demo(void);
+
+// For Red-Black Tree (Self-Balancing BST)
+typedef enum
+{
+    RED,
+    BLACK
+} rbColor;
+
+typedef struct rbNode
+{
+    int data;
+    rbColor color;
+    struct rbNode* left;
+    struct rbNode* right;
+    struct rbNode* parent;
+} rbNode;
+
+typedef struct rbTree
+{
+    rbNode* root;
+    rbNode* TNULL;
+} rbTree;
+
+rbTree* create_rb_tree(void);
+void rb_insert(rbTree* tree, int key);
+void rb_delete(rbTree* tree, int key);
+bool is_rb_tree_valid(rbTree* tree);
+void destroy_rb_tree(rbTree* tree);
+void red_black_tree_demo(void);
+
 #endif

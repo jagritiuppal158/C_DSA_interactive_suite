@@ -4,10 +4,11 @@
 #include <string.h>
 // #include <locale.h>
 
-#include "../utils/config.h"
 #include "advanced_graph_algorithms.h"
+#include "advanced_heaps.h"
 #include "advanced_sorting.h"
 #include "backtracking.h"
+#include "config.h"
 #include "data_structures.h"
 #include "display_header.h"
 #include "dynamic_programming.h"
@@ -106,6 +107,10 @@ static void run_backtracking_benchmark_wrapper(void)
 {
     run_benchmark_with_prompt(run_backtracking_benchmark, "Backtracking");
 }
+static void run_heaps_benchmark_wrapper(void)
+{
+    run_benchmark_with_prompt(run_heaps_benchmark, "Advanced Heaps");
+}
 
 typedef struct
 {
@@ -160,6 +165,7 @@ static Entry ENTRIES[] = {
     {"B-Tree", btree_demo, 0, 0, 1},
     {"B+ Tree", bplus_tree_demo, 0, 0, 1},
     {"Segment Tree", segment_tree_demo, 0, 0, 1},
+    {"Red-Black Tree", red_black_tree_demo, 0, 0, 1},
 
     {"sorting_algorithms_n2", NULL, 1, 1, 0},
     {"Bubble Sort", bubble_sort_optimized_demo, 0, 0, 1}, /* add fn when known */
@@ -199,6 +205,15 @@ static Entry ENTRIES[] = {
     {"Maximum Flow", max_flow_demo, 0, 0, 1},
     {"Bipartite Matching", bipartite_matching_demo, 0, 0, 1},
     {"Eulerian Path", eulerian_path_demo, 0, 0, 1},
+
+    {"advanced_heaps", NULL, 1, 1, 0},
+    {"Binomial Heap", run_binomial_demo, 0, 0, 1},
+    {"Fibonacci Heap", run_fibonacci_demo, 0, 0, 1},
+    {"Leftist Heap", run_leftist_demo, 0, 0, 1},
+    {"Skew Heap", run_skew_demo, 0, 0, 1},
+    {"Min-Max Heap", run_min_max_demo, 0, 0, 1},
+    {"d-Ary Heap", run_dary_demo, 0, 0, 1},
+    {"Treap", run_treap_demo, 0, 0, 1},
 
     {"hashing", NULL, 1, 1, 0},
     {"Linear Probing", linear_probing_demo, 0, 0, 1},
@@ -242,6 +257,7 @@ static Entry ENTRIES[] = {
     {"Naive String Matching", naive_string_matching_demo, 0, 0, 1},
     {"KMP Search", kmp_demo, 0, 0, 1},
     {"Rabin-Karp Search", rabin_karp_demo, 0, 0, 1},
+    {"Suffix Array & Kasai's LCP", suffix_array_demo, 0, 0, 1},
 
     {"algorithm_benchmarks", NULL, 1, 1, 0},
     {"Sorting Benchmarks", run_sorting_benchmark_wrapper, 0, 0, 1},
@@ -255,6 +271,7 @@ static Entry ENTRIES[] = {
     {"Hash Map Resolution", run_hashing_benchmark_wrapper, 0, 0, 1},
     {"Trees Lookups", run_trees_benchmark_wrapper, 0, 0, 1},
     {"Backtracking", run_backtracking_benchmark_wrapper, 0, 0, 1},
+    {"Advanced Heaps Benchmark", run_heaps_benchmark_wrapper, 0, 0, 1},
 };
 
 static const int ENTRY_COUNT = sizeof(ENTRIES) / sizeof(ENTRIES[0]);

@@ -1,4 +1,5 @@
 #include "advanced_graph_algorithms/advanced_graph_algorithms.h"
+#include "advanced_heaps/advanced_heaps.h"
 #include "advanced_sorting_algorithms/advanced_sorting.h"
 #include "backtracking/backtracking.h"
 #include "benchmark.h"
@@ -18,9 +19,11 @@
 #include "utils/display_header.h"
 #include "utils/safe_input.h"
 #ifndef _WIN32
-#include "tui/tui.h"
+#include "../tui/tui.h"
 #endif
+#include "profiler/memory_tracker.h"
 #include <stdio.h>
+#include <string.h>
 
 void data_structures_demo(void);
 
@@ -55,8 +58,9 @@ void run_legacy_menu()
             "click 16 for algorithm benchmarking and profiling demo\n"
             "click 17 for advanced graph algorithms (scc / max flow / bipartite matching / "
             "eulerian path) demo\n"
+            "click 18 for advanced heaps & priority queues suite demo\n"
             "enter choice : ",
-            1, 17 // limits
+            1, 18 // limits
         );
 
         if (status == -111)
@@ -124,6 +128,9 @@ void run_legacy_menu()
             case 17:
                 advanced_graph_algorithms_demo();
                 break;
+            case 18:
+                advanced_heaps_demo();
+                break;
         }
     }
 }
@@ -166,8 +173,16 @@ void tui_menu()
 }
 #endif
 
-int main()
+int main(int argc, char* argv[])
 {
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--profile") == 0)
+        {
+            init_memory_tracker();
+            break;
+        }
+    }
 
 #ifdef _WIN32
     run_legacy_menu();

@@ -4,6 +4,14 @@ project(C_DSA_interactive_suite C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror")
 
+option(SANITIZE "Enable AddressSanitizer and UndefinedBehaviorSanitizer" OFF)
+
+if(SANITIZE)
+    message(STATUS "Sanitizers enabled: AddressSanitizer + UndefinedBehaviorSanitizer")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -g")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address,undefined")
+endif()
+
 # Source directories
 set(SRC_DIRS
     src/data_structures
@@ -44,8 +52,8 @@ list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c")
 # Platform specific configurations
 if(NOT WIN32)
     # Include TUI
-    include_directories(src/tui)
-    file(GLOB TUI_SRCS "src/tui/*.c")
+    include_directories(tui)
+    file(GLOB TUI_SRCS "tui/*.c")
     list(APPEND SOURCES ${TUI_SRCS})
     
     # Find and link ncurses

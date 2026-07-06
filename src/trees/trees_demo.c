@@ -40,32 +40,26 @@ void trees_demo(void)
                 display_header("Binary Search Tree");
                 binary_search_tree_demo();
                 break;
-
             case 2:
                 display_header("AVL Tree");
                 avl_demo();
                 break;
-
             case 3:
                 display_header("Threaded Binary Tree");
                 TBT_demo();
                 break;
-
             case 4:
                 display_header("Trie");
                 trie_demo();
                 break;
-
             case 5:
                 display_header("B-Tree");
                 btree_demo();
                 break;
-
             case 6:
                 display_header("B+ Tree");
                 bplus_tree_demo();
                 break;
-
             case 7:
                 display_header("Segment Tree");
                 segment_tree_demo();
