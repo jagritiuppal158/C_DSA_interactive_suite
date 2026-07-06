@@ -5,6 +5,10 @@
 splayNode* splay_create_node(int key)
 {
     splayNode* node = (splayNode*)malloc(sizeof(splayNode));
+    if (node == NULL)
+    {
+        return NULL;
+    }
     node->key = key;
     node->left = node->right = NULL;
     return node;
