@@ -1,9 +1,14 @@
-#include "advanced_graph_algorithms/advanced_graph_algorithms.h"
-#include "advanced_heaps/advanced_heaps.h"
+#include "utils/config.h"
 #include "advanced_sorting_algorithms/advanced_sorting.h"
 #include "backtracking/backtracking.h"
-#include "benchmark.h"
-#include "data_structures/data_structures.h"
+#include "data_structures/array.h"
+#include "data_structures/dcll.h"
+#include "data_structures/dll.h"
+#include "data_structures/priority-queue.h"
+#include "data_structures/scll.h"
+#include "data_structures/stack.h"
+#include "data_structures/sll.h"
+#include "data_structures/queue.h"
 #include "dynamic_programming/dynamic_programming.h"
 #include "error_correction_algorithms/error_correction_algorithms.h"
 #include "expression_evaluation/expression.h"
@@ -11,19 +16,15 @@
 #include "hashing/hash.h"
 #include "job_scheduling/job_scheduling.h"
 #include "process_synchronization/process_synchronization.h"
+#include "utils/safe_input.h"
 #include "searching_algorithms/searching_algorithms.h"
 #include "sorting_algorithms_n2/sorting_algorithms_n2.h"
 #include "string_algorithms/string_algorithms.h"
 #include "trees/trees.h"
-#include "utils/config.h"
-#include "utils/display_header.h"
-#include "utils/safe_input.h"
 #ifndef _WIN32
-#include "../tui/tui.h"
+#include "tui/tui.h"
 #endif
-#include "profiler/memory_tracker.h"
 #include <stdio.h>
-#include <string.h>
 
 void data_structures_demo(void);
 
@@ -55,12 +56,8 @@ void run_legacy_menu()
             "click 13 for string algorithms demo\n"
             "click 14 for process synchronization algorithms demo\n"
             "click 15 for setting animation speed (by default 2s)\n"
-            "click 16 for algorithm benchmarking and profiling demo\n"
-            "click 17 for advanced graph algorithms (scc / max flow / bipartite matching / "
-            "eulerian path) demo\n"
-            "click 18 for advanced heaps & priority queues suite demo\n"
             "enter choice : ",
-            1, 18 // limits
+            1, 15 // limits
         );
 
         if (status == -111)
@@ -118,18 +115,7 @@ void run_legacy_menu()
                 process_synchronization_demo();
                 break;
             case 15:
-                display_header("Settings");
                 settings_menu_demo();
-                break;
-            case 16:
-                display_header("Algorithm Benchmarking & Profiling");
-                benchmark_menu_demo();
-                break;
-            case 17:
-                advanced_graph_algorithms_demo();
-                break;
-            case 18:
-                advanced_heaps_demo();
                 break;
         }
     }
@@ -173,16 +159,8 @@ void tui_menu()
 }
 #endif
 
-int main(int argc, char* argv[])
+int main()
 {
-    for (int i = 1; i < argc; i++)
-    {
-        if (strcmp(argv[i], "--profile") == 0)
-        {
-            init_memory_tracker();
-            break;
-        }
-    }
 
 #ifdef _WIN32
     run_legacy_menu();
