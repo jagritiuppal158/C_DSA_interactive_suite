@@ -1,7 +1,7 @@
 #include "../utils/config.h"
 #include "clear_screen.h"
 #include "cross_platform_timer.h"
-#include "data_structures.h"
+#include "stack.h"
 #include "safe_input.h"
 #include <stdio.h>
 

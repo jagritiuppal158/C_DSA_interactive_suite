@@ -1,4 +1,4 @@
-#include "data_structures.h"
+#include "priority_queue.h"
 #include "safe_input.h"
 #include <limits.h>
 #include <stdio.h>

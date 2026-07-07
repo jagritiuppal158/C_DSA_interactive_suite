@@ -1,4 +1,4 @@
-#include "data_structures.h"
+#include "queue.h"
 #include "graph_traversals.h"
 #include "returnMallocVal.h"
 #include "safe_input.h"

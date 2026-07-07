@@ -1,6 +1,7 @@
 #ifndef GRAPH_TRAVERSALS_H
 #define GRAPH_TRAVERSALS_H
-#include "data_structures.h"
+#include <stdbool.h>
+#include "sll.h"
 
 void bfs_demo(void);
 void dfs_demo(void);

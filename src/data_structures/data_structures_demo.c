@@ -1,4 +1,11 @@
-#include "data_structures.h"
+#include "array.h"
+#include "dll.h"
+#include "sll.h"
+#include "queue.h"
+#include "priority_queue.h"
+#include "dcll.h"
+#include "scll.h"
+#include "stack.h"
 #include "display_header.h"
 #include "safe_input.h"
 #include <stdio.h>
