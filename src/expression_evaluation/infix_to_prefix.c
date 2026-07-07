@@ -43,8 +43,8 @@ void infix_to_prefix_demo(void)
 {
     char infix_expr[50];
     char reversed_expr[50];
-    char postfix_expr[50];
-    char prefix_expr[50];
+    char postfix_expr[100];
+    char prefix_expr[100];
 
     while (1)
     {
