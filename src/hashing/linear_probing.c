@@ -86,6 +86,12 @@ void linear_probing_demo(void)
             int hash_location = hash_function(
                 value, length_of_array); // calling the hash function on user input value
 
+            if (hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
+
             if (!arr[hash_location])
             {
                 arr[hash_location] = value; // inserting value at its hash location
@@ -136,6 +142,11 @@ void linear_probing_demo(void)
             // walk forward with wrap-around. instead of placing the value, we record the index
             // where it is found. this reflects the real cost of a hash-table lookup.
             int hash_location = hash_function(search_val, length_of_array);
+            if (hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
             int res = -1;
             int start = hash_location;
 
