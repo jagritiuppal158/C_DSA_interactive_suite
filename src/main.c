@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "advanced_graph_algorithms/advanced_graph_algorithms.h"
 #include "advanced_heaps/advanced_heaps.h"
@@ -21,6 +22,7 @@
 #include "hashing/hash.h"
 #include "job_scheduling/job_scheduling.h"
 #include "process_synchronization/process_synchronization.h"
+#include "profiler/memory_tracker.h"
 #include "searching_algorithms/searching_algorithms.h"
 #include "sorting_algorithms_n2/sorting_algorithms_n2.h"
 #include "string_algorithms/string_algorithms.h"
