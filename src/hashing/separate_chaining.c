@@ -49,6 +49,11 @@ void separate_chaining_demo(void)
             }
 
             int hash_location = hash_function(value, hash_table_size);
+            if (hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
 
             sll_insertAtEnd(&table[hash_location],
                             value); // insert value by passing the address of the pointer to Node

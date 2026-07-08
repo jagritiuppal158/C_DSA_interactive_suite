@@ -79,7 +79,12 @@ void double_hashing_demo(void)
             }
 
             int h1 = hash_function(value, length_of_array); // primary hash
-            int h2 = second_hash(value, length_of_array);   // step size, never 0
+            if (h1 == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
+            int h2 = second_hash(value, length_of_array); // step size, never 0
             bool inserted = false;
 
             for (int i = 0; i < length_of_array; i++)
@@ -121,6 +126,11 @@ void double_hashing_demo(void)
             }
 
             int h1 = hash_function(search_val, length_of_array);
+            if (h1 == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
             int h2 = second_hash(search_val, length_of_array);
             int found_index = -1;
 

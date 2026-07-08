@@ -44,6 +44,11 @@ void quadratic_probing_demo(void)
             }
 
             int base_hash_location = hash_function(value, length_of_array);
+            if (base_hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
             bool inserted = false;
 
             for (int i = 0; i < length_of_array; i++)
@@ -88,6 +93,11 @@ void quadratic_probing_demo(void)
             }
 
             int base_hash_location = hash_function(search_value, length_of_array);
+            if (base_hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
             bool found = false;
 
             for (int i = 0; i < length_of_array; i++)

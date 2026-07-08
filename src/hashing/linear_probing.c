@@ -9,6 +9,10 @@
 // modules
 static int next_prime(int n)
 {
+    if (n <= 1)
+    {
+        return 2;
+    }
     int size = sizeof(PRIMES) / sizeof(PRIMES[0]);
     for (int i = n + 1; i < size; i++)
     {
@@ -32,6 +36,10 @@ static int next_prime(int n)
 
 int hash_function(int value, int length_of_array)
 {
+    if (length_of_array <= 0)
+    {
+        return -1;
+    }
     int next_prime_no = next_prime(length_of_array);
     return ((value + 1) * next_prime_no) % length_of_array;
 }
@@ -77,6 +85,12 @@ void linear_probing_demo(void)
 
             int hash_location = hash_function(
                 value, length_of_array); // calling the hash function on user input value
+
+            if (hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
 
             if (!arr[hash_location])
             {
@@ -128,6 +142,11 @@ void linear_probing_demo(void)
             // walk forward with wrap-around. instead of placing the value, we record the index
             // where it is found. this reflects the real cost of a hash-table lookup.
             int hash_location = hash_function(search_val, length_of_array);
+            if (hash_location == -1)
+            {
+                printf("\nInvalid array length for hashing.\n");
+                continue;
+            }
             int res = -1;
             int start = hash_location;
 
