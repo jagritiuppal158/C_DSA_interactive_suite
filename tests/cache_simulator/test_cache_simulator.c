@@ -171,12 +171,64 @@ void test_lfu_basic()
     printf("LFU basic cache tests passed\n");
 }
 
+void test_opt_basic()
+{
+    Cache cache;
+    cache_init(&cache, 3);
+
+    int ref_str[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+    int ref_len = sizeof(ref_str) / sizeof(ref_str[0]);
+
+    // Access 7: Miss
+    assert(!cache_access_opt(&cache, 7, ref_str, ref_len, 0, false)); // Cache: 7
+    // Access 0: Miss
+    assert(!cache_access_opt(&cache, 0, ref_str, ref_len, 1, false)); // Cache: 7, 0
+    // Access 1: Miss
+    assert(!cache_access_opt(&cache, 1, ref_str, ref_len, 2, false)); // Cache: 7, 0, 1
+
+    // Access 2: Miss. Future references:
+    // 7 will be accessed at index 17
+    // 0 will be accessed at index 4
+    // 1 will be accessed at index 13
+    // Evict 7 (furthest in future).
+    assert(!cache_access_opt(&cache, 2, ref_str, ref_len, 3, false)); // Cache: 2, 0, 1
+
+    bool found_7 = false;
+    for (int i = 0; i < 3; i++)
+    {
+        if (cache.blocks[i].page_id == 7)
+            found_7 = true;
+    }
+    assert(!found_7);
+
+    // Access 0: Hit
+    assert(cache_access_opt(&cache, 0, ref_str, ref_len, 4, false));
+
+    // Access 3: Miss. Future references of current cache (2, 0, 1):
+    // 2 will be accessed at index 8
+    // 0 will be accessed at index 6
+    // 1 will be accessed at index 13
+    // Evict 1 (furthest in future).
+    assert(!cache_access_opt(&cache, 3, ref_str, ref_len, 5, false)); // Cache: 2, 0, 3
+
+    bool found_1 = false;
+    for (int i = 0; i < 3; i++)
+    {
+        if (cache.blocks[i].page_id == 1)
+            found_1 = true;
+    }
+    assert(!found_1);
+
+    printf("OPT basic cache tests passed\n");
+}
+
 int main()
 {
     test_fifo_basic();
     test_lru_basic();
     test_mru_basic();
     test_lfu_basic();
+    test_opt_basic();
     printf("All cache simulator tests passed\n");
     return 0;
 }
