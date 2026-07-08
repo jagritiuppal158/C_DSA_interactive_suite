@@ -31,7 +31,7 @@ int isOperator(char ch)
 void infix_to_postfix_demo(void)
 {
     char infix_expr[50];
-    char postfix_expr[50];
+    char postfix_expr[100];
     int step;
 
     while (1)
