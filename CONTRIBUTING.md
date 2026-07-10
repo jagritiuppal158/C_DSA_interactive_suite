@@ -27,6 +27,8 @@ This project is Linux native. Which means it is made, maintained on Linux and wo
 
 Also note that you must run `make fmt` before submitting your PR otherwise CI will definitely fail
 
+After you make a PR, it is your responsibility to get it merged within 72 hours. After that I will simply close the PR as it will be classified as 'stale'.  
+
 I have created a special discord server to resolve your issues and doubts regarding the project and contribution. There we can discuss everything about the project as well as your technical/conceptual doubts. 
 Here is the link - https://discord.gg/RxepKBWBX
 
