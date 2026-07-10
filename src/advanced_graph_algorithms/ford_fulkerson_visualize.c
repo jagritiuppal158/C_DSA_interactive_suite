@@ -136,9 +136,18 @@ static void visualize_ford_fulkerson(weightedGraph* graph, int source, int sink)
 {
     int V = graph->V;
     int** residual = malloc(sizeof(int*) * V);
+    if (residual == NULL)
+        return;
     for (int i = 0; i < V; i++)
     {
         residual[i] = calloc(V, sizeof(int));
+        if (residual[i] == NULL)
+        {
+            for (int j = 0; j < i; j++)
+                free(residual[j]);
+            free(residual);
+            return;
+        }
     }
 
     for (int u = 0; u < V; u++)
@@ -153,6 +162,15 @@ static void visualize_ford_fulkerson(weightedGraph* graph, int source, int sink)
 
     int* parent = malloc(sizeof(int) * V);
     bool* visited = malloc(sizeof(bool) * V);
+    if (parent == NULL || visited == NULL)
+    {
+        free(parent);
+        free(visited);
+        for (int i = 0; i < V; i++)
+            free(residual[i]);
+        free(residual);
+        return;
+    }
     int max_flow = 0;
 
     while (1)
@@ -214,6 +232,12 @@ static bool bfs_augmenting_path_vis(weightedGraph* graph, int** residual, int so
     int V = graph->V;
     bool* visited = calloc(V, sizeof(bool));
     int* queue = malloc(sizeof(int) * V);
+    if (visited == NULL || queue == NULL)
+    {
+        free(visited);
+        free(queue);
+        return false;
+    }
     int head = 0, tail = 0;
 
     queue[tail++] = source;
@@ -251,9 +275,18 @@ static void visualize_edmonds_karp(weightedGraph* graph, int source, int sink)
 {
     int V = graph->V;
     int** residual = malloc(sizeof(int*) * V);
+    if (residual == NULL)
+        return;
     for (int i = 0; i < V; i++)
     {
         residual[i] = calloc(V, sizeof(int));
+        if (residual[i] == NULL)
+        {
+            for (int j = 0; j < i; j++)
+                free(residual[j]);
+            free(residual);
+            return;
+        }
     }
 
     for (int u = 0; u < V; u++)
@@ -267,6 +300,13 @@ static void visualize_edmonds_karp(weightedGraph* graph, int source, int sink)
     }
 
     int* parent = malloc(sizeof(int) * V);
+    if (parent == NULL)
+    {
+        for (int i = 0; i < V; i++)
+            free(residual[i]);
+        free(residual);
+        return;
+    }
     int max_flow = 0;
 
     while (1)
@@ -428,6 +468,8 @@ static bool dinic_bfs_vis(weightedGraph* graph, int** residual, int source, int 
     level[source] = 0;
 
     int* queue = malloc(sizeof(int) * V);
+    if (queue == NULL)
+        return false;
     int head = 0, tail = 0;
     queue[tail++] = source;
 
@@ -485,9 +527,18 @@ static void visualize_dinic(weightedGraph* graph, int source, int sink)
 {
     int V = graph->V;
     int** residual = malloc(sizeof(int*) * V);
+    if (residual == NULL)
+        return;
     for (int i = 0; i < V; i++)
     {
         residual[i] = calloc(V, sizeof(int));
+        if (residual[i] == NULL)
+        {
+            for (int j = 0; j < i; j++)
+                free(residual[j]);
+            free(residual);
+            return;
+        }
     }
 
     for (int u = 0; u < V; u++)
@@ -503,6 +554,16 @@ static void visualize_dinic(weightedGraph* graph, int source, int sink)
     int* level = malloc(sizeof(int) * V);
     int* start = malloc(sizeof(int) * V);
     int* parent = malloc(sizeof(int) * V);
+    if (level == NULL || start == NULL || parent == NULL)
+    {
+        free(level);
+        free(start);
+        free(parent);
+        for (int i = 0; i < V; i++)
+            free(residual[i]);
+        free(residual);
+        return;
+    }
     int max_flow = 0;
 
     while (dinic_bfs_vis(graph, residual, source, sink, level))
