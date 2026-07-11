@@ -24,9 +24,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c11 -g \
 	-Isrc/string_algorithms \
 	-Isrc/backtracking \
 	-Isrc/process_synchronization \
-	-Imemory_profiler \
-	-Isrc/debugger \
-	-Ibenchmark \
+	-Ifeatures/memory_profiler \
+	-Ifeatures/debugger \
+	-Ifeatures/benchmark \
 	-Isrc/cache_simulator \
 	-Isrc/compression
 	# -Itui
@@ -52,9 +52,9 @@ SRC_DIRS = \
 	src/string_algorithms \
 	src/backtracking \
 	src/process_synchronization \
-	memory_profiler \
-	src/debugger \
-	benchmark \
+	features/memory_profiler \
+	features/debugger \
+	features/benchmark \
 	src/cache_simulator \
 	src/compression
 

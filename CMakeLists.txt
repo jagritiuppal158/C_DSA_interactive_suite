@@ -32,9 +32,9 @@ set(SRC_DIRS
     src/string_algorithms
     src/backtracking
     src/process_synchronization
-    memory_profiler
-    src/debugger
-    benchmark
+    features/memory_profiler
+    features/debugger
+    features/benchmark
     src/cache_simulator
     src/compression
 )
