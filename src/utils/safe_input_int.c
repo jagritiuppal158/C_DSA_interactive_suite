@@ -83,14 +83,3 @@ int safe_input_int(int* input, const char* prompt, int min_val, int max_val)
         return 1; // Successful insertion
     }
 }
-
-void trim_newline(char* str)
-{
-    if (str == NULL)
-        return;
-    size_t len = strlen(str);
-    while (len > 0 && (str[len - 1] == '\n' || str[len - 1] == '\r'))
-    {
-        str[--len] = '\0';
-    }
-}
