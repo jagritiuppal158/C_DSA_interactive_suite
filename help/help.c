@@ -67,7 +67,7 @@ void launch_help_page(void)
                 printf("=================================================================\n");
                 printf("Press [ENTER] to return to the main help menu...\n");
                 printf("=================================================================\n");
-                getchar();
+                press_enter_to_continue();
                 break;
         }
     }

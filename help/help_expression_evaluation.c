@@ -11,6 +11,7 @@ void help_expression_evaluation_menu(void)
 
         printf("Select a sub-topic:\n\n");
         printf("1. Postfix Expression Evaluation\n");
+        printf("2. Infix Expression Evaluation\n");
         int choice;
         int status = safe_input_int(&choice, "Enter choice (or -1 to go back): ", 1, 1);
 
@@ -38,6 +39,21 @@ void help_expression_evaluation_menu(void)
                        "binary operators),\n");
                 printf("      evaluate the result, and push the result back onto Stack.\n");
                 printf("    • The final result will be the single value left on Stack.\n\n");
+                getchar();
+                break;
+            case 2:
+                display_header("Help - Infix Expression Evaluation");
+                printf("INFIX EXPRESSION:\n");
+                printf("    Operators are written in-between operands (e.g., A + B).\n");
+                printf("    Requires operator precedence and parentheses rules to evaluate.\n\n");
+                printf("INFIX TO POSTFIX CONVERSION:\n");
+                printf(
+                    "    Uses a Stack to store operators and enforce precedence. When parsing:\n");
+                printf("    • Operands are output immediately.\n");
+                printf("    • Left parentheses '(' are pushed onto the Stack.\n");
+                printf("    • Right parentheses ')' pop operators until '(' is encountered.\n");
+                printf("    • Operators pop higher or equal precedence operators from Stack, then "
+                       "push themselves.\n\n");
                 printf("=================================================================\n");
                 printf("Press [ENTER] to return...\n");
                 printf("=================================================================\n");
