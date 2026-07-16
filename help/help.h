@@ -37,4 +37,9 @@ void help_expression_evaluation_menu(void);
  */
 void help_hashing_menu(void);
 
+/**
+ * @brief Sub-menu for Error Correction help.
+ */
+void help_error_correction_menu(void);
+
 #endif // HELP_H
