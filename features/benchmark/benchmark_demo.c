@@ -52,12 +52,18 @@ void benchmark_menu_demo(void)
         if (choice == 0)
         {
             int opt;
-            int opt_status = safe_input_int(&opt,
-                                            "\n--- Configure Benchmarking Settings ---\n"
-                                            "1. Change Number of Iterations (currently: %d)\n"
-                                            "2. Change Export Reporting Format (currently: %s)\n"
-                                            "Enter option (1 or 2): ",
-                                            1, 2);
+            char opt_msg[256];
+            snprintf(opt_msg, sizeof(opt_msg),
+                     "\n--- Configure Benchmarking Settings ---\n"
+                     "1. Change Number of Iterations (currently: %d)\n"
+                     "2. Change Export Reporting Format (currently: %s)\n"
+                     "Enter option (1 or 2): ",
+                     benchmark_iterations,
+                     benchmark_output_format == FORMAT_CSV
+                         ? "CSV"
+                         : (benchmark_output_format == FORMAT_MARKDOWN ? "Markdown" : "JSON"));
+
+            int opt_status = safe_input_int(&opt, opt_msg, 1, 2);
             if (opt_status != 1)
                 continue;
 
