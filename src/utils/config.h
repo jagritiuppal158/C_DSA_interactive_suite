@@ -24,5 +24,7 @@ void init_windows_console(void);
 // Getters/setters for telemetry tracing option
 void set_telemetry_trace_enabled(int enabled);
 int is_telemetry_trace_enabled(void);
+void set_telemetry_trace_filepath(const char* filepath);
+const char* get_telemetry_trace_filepath(void);
 
 #endif

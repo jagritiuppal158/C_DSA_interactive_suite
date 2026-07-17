@@ -42,7 +42,10 @@ int get_paused(void)
 #if defined(__GNUC__) || defined(__clang__)
 __attribute__((weak)) void algorithm_step_hook(const char* event_msg)
 {
-    (void)event_msg;
+    if (is_telemetry_enabled() && event_msg != NULL)
+    {
+        telemetry_log_step(NULL, 0, event_msg);
+    }
 }
 #endif
 
@@ -161,4 +164,14 @@ void set_telemetry_trace_enabled(int enabled)
 int is_telemetry_trace_enabled(void)
 {
     return is_telemetry_enabled() ? 1 : 0;
+}
+
+void set_telemetry_trace_filepath(const char* filepath)
+{
+    set_telemetry_filepath(filepath);
+}
+
+const char* get_telemetry_trace_filepath(void)
+{
+    return get_telemetry_filepath();
 }

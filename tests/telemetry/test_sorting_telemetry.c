@@ -11,7 +11,7 @@ static void verify_telemetry_file(const char* expected_algo_name)
     FILE* fp = fopen("test_binaries/sorting_trace.json", "r");
     assert(fp != NULL);
 
-    char buffer[2048];
+    char buffer[65536];
     size_t bytes_read = fread(buffer, 1, sizeof(buffer) - 1, fp);
     buffer[bytes_read] = '\0';
     fclose(fp);
