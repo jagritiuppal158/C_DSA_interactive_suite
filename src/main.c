@@ -203,7 +203,16 @@ int main(int argc, char* argv[])
         if (strcmp(argv[i], "--profile") == 0)
         {
             init_memory_tracker();
-            break;
+        }
+        else if (strcmp(argv[i], "--export-trace") == 0)
+        {
+            set_telemetry_trace_enabled(1);
+        }
+        else if (strcmp(argv[i], "--export-trace-path") == 0 && i + 1 < argc)
+        {
+            set_telemetry_trace_enabled(1);
+            set_telemetry_trace_filepath(argv[i + 1]);
+            i++;
         }
     }
 

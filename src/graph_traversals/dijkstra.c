@@ -2,6 +2,7 @@
 #include "graph_traversals.h"
 #include "safe_input.h"
 #include "step_debugger.h"
+#include "telemetry.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -132,9 +133,11 @@ bool extractTop_pq_graph(PQ_graph* pq, PQ_graph_node* result)
 // and must not be treated as a measure of the algorithm's efficiency.
 void dijkstra(weightedGraph* graph, int start)
 {
+    telemetry_init("dijkstra");
     if (graph == NULL || start < 0 || start >= graph->V)
     {
         printf("\nError: invalid graph or starting node passed to Dijkstra");
+        telemetry_close();
         return;
     }
     int size = graph->V;
@@ -333,6 +336,7 @@ void dijkstra(weightedGraph* graph, int start)
     }
 
     printf("\ntotal CPU time taken for Dijkstra's algorithm:- %f seconds\n", total_t);
+    telemetry_close();
 }
 
 weightedGraph* create_weightedGraph(int V)

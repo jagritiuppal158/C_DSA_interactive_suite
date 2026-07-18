@@ -3,6 +3,7 @@
 #include "returnMallocVal.h"
 #include "safe_input.h"
 #include "step_debugger.h"
+#include "telemetry.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,9 +14,11 @@
 // algorithm's efficiency.
 void bfs(Graph* graph, int start)
 {
+    telemetry_init("bfs");
     if (graph == NULL)
     {
         printf("\nError: NULL graph passed to BFS");
+        telemetry_close();
         return;
     }
     int size = graph->V;
@@ -27,6 +30,7 @@ void bfs(Graph* graph, int start)
     if (start < 0 || start >= size)
     {
         printf("\ninvalid node passed as starting node");
+        telemetry_close();
         return;
     }
 
@@ -35,6 +39,7 @@ void bfs(Graph* graph, int start)
     if (!init_circ_queue(size + 1, &nodes))
     {
         printf("\nerror initializing queue. returning....");
+        telemetry_close();
         return;
     }
 
@@ -88,6 +93,7 @@ void bfs(Graph* graph, int start)
     printf("\ntotal CPU time taken for BFS traversal:- %f seconds\n", total_t);
 
     destroy_circ_queue(&nodes);
+    telemetry_close();
 }
 
 Graph* create_graph(int V)

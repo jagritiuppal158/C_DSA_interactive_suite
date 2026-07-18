@@ -1,4 +1,5 @@
 #include "step_debugger.h"
+#include "telemetry.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -57,6 +58,11 @@ void algorithm_step_hook(const char* event_msg)
 {
     if (event_msg == NULL)
         return;
+
+    if (is_telemetry_enabled())
+    {
+        telemetry_log_step(NULL, 0, event_msg);
+    }
 
     // Shift events in circular log
     if (event_count < 5)

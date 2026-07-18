@@ -2,6 +2,7 @@
 #include "safe_input.h"
 #include "stack.h"
 #include "step_debugger.h"
+#include "telemetry.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,9 +15,11 @@ void dfs(Graph* graph, int start);
 // algorithm's efficiency.
 void dfs(Graph* graph, int start)
 {
+    telemetry_init("dfs");
     if (graph == NULL)
     {
         printf("\nError: NULL graph passed to DFS");
+        telemetry_close();
         return;
     }
     int size = graph->V;
@@ -28,6 +31,7 @@ void dfs(Graph* graph, int start)
     if (start < 0 || start >= size)
     {
         printf("\ninvalid node passed as starting node");
+        telemetry_close();
         return;
     }
 
@@ -36,6 +40,7 @@ void dfs(Graph* graph, int start)
     if (nodes == NULL)
     {
         printf("stack could not be initialized due to a malloc failure");
+        telemetry_close();
         return;
     }
 
@@ -83,5 +88,6 @@ void dfs(Graph* graph, int start)
     printf("end\n");
     printf("\ntotal CPU time taken for DFS traversal:- %f seconds\n", total_t);
     destroyStack(nodes);
+    telemetry_close();
     return;
 }
