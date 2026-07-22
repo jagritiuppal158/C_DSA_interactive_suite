@@ -39,8 +39,10 @@ void help_advanced_topics_menu(void)
                 printf("    solving each subproblem once, and storing their solutions (Memoization "
                        "/ Tabulation).\n\n");
                 printf("DP VISUALIZER:\n");
-                printf("    An interactive helper tool integrated into DP demos that traces recursion\n");
-                printf("    trees, caches subproblem states (memoization/tabulation), and visualizes state\n");
+                printf("    An interactive helper tool integrated into DP demos that traces "
+                       "recursion\n");
+                printf("    trees, caches subproblem states (memoization/tabulation), and "
+                       "visualizes state\n");
                 printf("    transitions step-by-step.\n\n");
                 printf("BACKTRACKING:\n");
                 printf("    Systematic search method that tries to construct a solution "
@@ -112,10 +114,14 @@ void help_advanced_topics_menu(void)
                 printf("    Measures and compares execution time, memory usage, or operational\n");
                 printf("    efficiency across different algorithms under uniform conditions.\n\n");
                 printf("CONFIGURATION SETTINGS:\n");
-                printf("    • Iterations: Define how many times each algorithm is executed to calculate\n");
-                printf("                  an accurate average time (mitigates CPU spike anomalies).\n");
-                printf("    • Export Reporting Format: Save the benchmark results to external report\n");
-                printf("                               files in CSV, Markdown, or JSON formats.\n\n");
+                printf("    • Iterations: Define how many times each algorithm is executed to "
+                       "calculate\n");
+                printf("                  an accurate average time (mitigates CPU spike "
+                       "anomalies).\n");
+                printf("    • Export Reporting Format: Save the benchmark results to external "
+                       "report\n");
+                printf(
+                    "                               files in CSV, Markdown, or JSON formats.\n\n");
                 printf("BENCHMARK SUITES:\n");
                 printf("    1. Sorting Algorithms           8. Hash Map Collision Resolution\n");
                 printf("    2. Searching Algorithms         9. Trees Lookup Performance\n");

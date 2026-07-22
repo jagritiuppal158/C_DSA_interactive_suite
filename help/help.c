@@ -71,16 +71,23 @@ void launch_help_page(void)
                 printf("    and Algorithms implemented in C.\n\n");
                 printf("NAVIGATION & COMMANDS\n");
                 printf("    help               - Launches this help page from any input prompt.\n");
-                printf("    -1                 - Exits the current menu, sub-suite, or application.\n");
+                printf("    -1                 - Exits the current menu, sub-suite, or "
+                       "application.\n");
                 printf("    Numbers            - Choose specific menu items or menu paths.\n\n");
                 printf("CLI ARGUMENTS & FLAGS\n");
-                printf("    --profile                  - Enable memory tracking and allocation reports.\n");
+                printf("    --profile                  - Enable memory tracking and allocation "
+                       "reports.\n");
                 printf("    --export-trace             - Enable execution telemetry tracing.\n");
-                printf("    --export-trace-path <path> - Specify a target path for trace file exports.\n");
-                printf("    --load-bst <path>          - Load and visualize a BST from a serialized file.\n");
-                printf("    --load-avl <path>          - Load and visualize an AVL Tree from a serialized file.\n");
-                printf("    --load-graph <path>        - Load and print an unweighted Graph from a file.\n");
-                printf("    --load-wgraph <path>       - Load and print a Weighted Graph from a file.\n\n");
+                printf("    --export-trace-path <path> - Specify a target path for trace file "
+                       "exports.\n");
+                printf("    --load-bst <path>          - Load and visualize a BST from a "
+                       "serialized file.\n");
+                printf("    --load-avl <path>          - Load and visualize an AVL Tree from a "
+                       "serialized file.\n");
+                printf("    --load-graph <path>        - Load and print an unweighted Graph from a "
+                       "file.\n");
+                printf("    --load-wgraph <path>       - Load and print a Weighted Graph from a "
+                       "file.\n\n");
                 printf("=================================================================\n");
                 printf("Press [ENTER] to return to the main help menu...\n");
                 printf("=================================================================\n");
