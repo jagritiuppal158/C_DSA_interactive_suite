@@ -147,6 +147,11 @@ int tree_height(const bstNode* root)
         return right_height;
 }
 
+/**
+ * @brief Destroys the Binary Search Tree and frees all allocated memory.
+ * Note: standard free() handles NULL pointers natively; the head == NULL check
+ * here is required to protect recursive dereferencing of child nodes.
+ */
 void destroy_bst(bstNode* head)
 {
     if (head == NULL)
