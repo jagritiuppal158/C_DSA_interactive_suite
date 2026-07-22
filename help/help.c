@@ -15,7 +15,13 @@ void launch_help_page(void)
 
     while (1)
     {
-        display_header("C DSA INTERACTIVE SUITE - HELP MANUAL");
+        printf("\033[1;30m===================================================\033[0m\n");
+        printf("\033[1;36m     _   _  _____  _      ____  \033[0m\n");
+        printf("\033[1;36m    | | | || ____|| |    |  _ \\ \033[0m\n");
+        printf("\033[1;36m    | |_| ||  _|  | |    | |_) |\033[0m\n");
+        printf("\033[1;36m    |  _  || |___ | |___ |  __/ \033[0m\n");
+        printf("\033[1;36m    |_| |_||_____||_____||_|    \033[0m\n");
+        printf("\033[1;30m===================================================\033[0m\n");
 
         printf("Select a module to view its help page:\n\n");
         printf("1. Data Structures Help\n");
