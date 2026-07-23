@@ -6,6 +6,7 @@
 void test_hexdump_null_handling(void)
 {
     char buf[128];
+    memset(buf, 0, sizeof(buf));
     size_t written = format_hexdump(NULL, 0, buf, sizeof(buf));
     assert(written > 0);
     assert(strstr(buf, "NULL") != NULL);
@@ -16,6 +17,7 @@ void test_hexdump_basic_formatting(void)
 {
     char data[] = "Hello C_DSA!";
     char buf[512];
+    memset(buf, 0, sizeof(buf));
     size_t len = strlen(data);
 
     size_t written = format_hexdump(data, len, buf, sizeof(buf));
