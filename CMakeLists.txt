@@ -46,10 +46,12 @@ set(SRC_DIRS
     demos/advanced_graph_algorithms
     demos/string_algorithms
     demos/advanced_sorting_algorithms
+    demos/expression_evaluation
     demos/advanced_heaps
     features/telemetry
     features/serialization
     features/dp_visualizer
+    features/memory_inspector
 )
 
 # Header search paths
